@@ -135,32 +135,14 @@
     @include('layout._footer')
     <script>
         // Script of DataTables
-        // $(function() {
-        //     var table = $('#table_skripsi').DataTable({
-        //         processing: true,
-        //         serverSide: true,
-        //         responsive: true,
-        //         pageLength: 10,
-        //         lengthMenu: [
-        //             [10, 25, 50, -1],
-        //             [10, 25, 50, "All"]
-        //         ],
-        //         order: [
-        //             [0, "asc"]
-        //         ],
-        //         ajax: "{{ route('skripsi.getData') }}",
-        //         columns: [{
-        //             data: 'daftar_ta',
-        //             name: 'daftar_ta'
-        //         }, ]
-        //     });
-        // });
-        $(document).ready(function() {
-            $('#table_skripsi').DataTable({
-                "processing": true,
-                "serverSide": true,
-                "ajax": "{{ route('skripsi.getData') }}",
-                "columns": [{
+        $(function() {
+            var table = $('#table_skripsi').DataTable({
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                pagingType: "simple_numbers",
+                ajax: "{{ route('skripsi.getData') }}",
+                columns: [{
                     data: 'nim',
                     name: 'nim'
                 }, ]

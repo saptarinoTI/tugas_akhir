@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Mahasiswa;
-use App\Models\ProposalTA;
 
 class SeminarHasil extends Model
 {
@@ -20,11 +18,11 @@ class SeminarHasil extends Model
 
     public function proposal()
     {
-        return $this->belongsTo(ProposalTA::class, 'proposalta_id', 'id');
+        return $this->belongsTo('App\Models\ProposalTa', 'proposalta_id', 'id');
     }
 
     public function mahasiswa()
     {
-        return $this->belongsTo(Mahasiswa::class, 'mahasiswa_nim', 'nim');
+        return $this->belongsTo('App\Models\Mahasiswa', 'mahasiswa_nim', 'nim');
     }
 }
