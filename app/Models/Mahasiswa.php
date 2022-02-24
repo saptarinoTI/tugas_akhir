@@ -2,11 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Dosen\Dosen;
-use App\Models\Pembimbing\Pembimbing;
-use App\Models\Pendadaran\Pendadaran;
-use App\Models\Proposal\Proposal;
-use App\Models\Seminar\Seminar;
+use App\Models\ProposalTA;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,14 +22,4 @@ class Mahasiswa extends Model
     {
         return $this->hasOne(ProposalTA::class, 'mahasiswa_nim', 'nim');
     }
-
-    // public function proposal_satu()
-    // {
-    //     return $this->hasOne(ProposalTA::class, 'mahasiswa_nim', 'nim');
-    // }
-
-    // public function proposal_dua()
-    // {
-    //     return $this->hasOne(ProposalTA::class, 'mahasiswa_nim', 'nim');
-    // }
 }
