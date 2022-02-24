@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Dosen\Dosen;
+use App\Models\Dosen;
 use App\Models\Mahasiswa;
-use App\Models\Pendadaran\Pendadaran;
-use App\Models\Seminar\Seminar;
+use App\Models\Pendadaran;
+use App\Models\SeminarHasil;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,18 +26,18 @@ class ProposalTA extends Model
     }
     public function dosen_satu()
     {
-        return $this->belongsTo('App\Models\Dosen', 'dosen_id_satu', 'id');
+        return $this->belongsTo(Dosen::class, 'dosen_id_satu', 'id');
     }
     public function dosen_dua()
     {
-        return $this->belongsTo('App\Models\Dosen', 'dosen_id_dua', 'id');
+        return $this->belongsTo(Dosen::class, 'dosen_id_dua', 'id');
     }
     public function semhas()
     {
-        return $this->hasMany('App\Models\SeminarHasil', 'proposalta_id', 'id');
+        return $this->hasMany(SeminarHasil::class, 'proposalta_id', 'id');
     }
     public function pendadaran()
     {
-        return $this->hasOne('App\Models\Pendadaran', 'proposalta_id', 'id');
+        return $this->hasOne(Pendadaran::class, 'proposalta_id', 'id');
     }
 }
