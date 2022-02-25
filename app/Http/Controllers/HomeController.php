@@ -41,7 +41,7 @@ class HomeController extends Controller
             $totalMhsLambat = [];
             foreach ($pendadaran as $pend) {
                 $nim = substr($pend->mahasiswa_nim, 0, 4);
-                $tgl = substr($pend->tgl_acc, 0, 4);
+                $tgl = substr($pend->tgl_lulus, 0, 4);
                 $hasil = (int)$tgl - (int)$nim;
                 if ($hasil < 5) {
                     $totalMhsTepat[] = 0;
