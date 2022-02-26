@@ -21,7 +21,7 @@ class StatusMahasiswaController extends Controller
 
     public function getData()
     {
-        $lulus = Pendadaran::where('status', 'lulus')->get();
+        $lulus = Pendadaran::where('status', 'lulus')->with('mahasiswa')->get();
         return DataTables::of($lulus)
             ->addIndexColumn()
             ->addColumn('nim', function ($row) {

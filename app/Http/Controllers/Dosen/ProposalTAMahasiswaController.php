@@ -119,7 +119,7 @@ class ProposalTAMahasiswaController extends Controller
     public function getData()
     {
         $dosen = Auth::user()->id;
-        $data = ProposalTA::where('dosen_id_satu', $dosen)->orWhere('dosen_id_dua', $dosen)->get();
+        $data = ProposalTA::where('dosen_id_satu', $dosen)->orWhere('dosen_id_dua', $dosen)->with('mahasiswa')->get();
         return DataTables::of($data)
             ->addIndexColumn()
             ->addColumn('nim', function ($row) {

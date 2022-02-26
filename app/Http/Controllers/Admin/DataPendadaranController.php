@@ -124,7 +124,7 @@ class DataPendadaranController extends Controller
 
     public function getData()
     {
-        $data = Pendadaran::all();
+        $data = Pendadaran::with('mahasiswa')->get();
         return DataTables::of($data)
             ->addIndexColumn()
             ->addColumn('nim', function ($row) {

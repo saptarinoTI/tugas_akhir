@@ -120,7 +120,7 @@ class DataSeminarHasilController extends Controller
 
     public function getData()
     {
-        $data = SeminarHasil::all();
+        $data = SeminarHasil::with('mahasiswa')->get();
         return DataTables::of($data)
             ->addIndexColumn()
             ->addColumn('nim', function ($row) {

@@ -20,6 +20,7 @@ class MahasiswaBimbinganController extends Controller
         $proposal = ProposalTA::where('status', 'diterima')
             ->where('dosen_id_satu', '=', $id_dosen)
             ->orWhere('dosen_id_dua', '=', $id_dosen)
+            ->with(['mahasiswa', 'pendadaran'])
             ->get();
         return DataTables::of($proposal)
             ->addIndexColumn()
