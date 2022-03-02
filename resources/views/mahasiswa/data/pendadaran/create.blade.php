@@ -5,7 +5,7 @@
     @csrf
     <!-- No Pendaftaran Pendadaran -->
     <div class="mb-3">
-        <input type="hidden" class="form-control" name="id" value="{{ $pendadaran->id }}" readonly />
+        <input type="hidden" class="form-control" name="id" value="{{ $proposal->id }}" readonly />
     </div>
     <!-- Proposal ID -->
     <div class="mb-3">

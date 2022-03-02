@@ -52,7 +52,9 @@ class PendadaranController extends Controller
      */
     public function create()
     {
-        return view('mahasiswa.data.pendadaran.create');
+        $nim = auth()->user()->id;
+        $proposal = ProposalTA::where('mahasiswa_nim', '=', $nim)->first();
+        return view('mahasiswa.data.pendadaran.create', compact('proposal'));
     }
 
     /**
