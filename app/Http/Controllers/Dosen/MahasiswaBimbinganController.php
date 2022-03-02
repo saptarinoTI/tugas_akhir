@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dosen;
 use App\Http\Controllers\Controller;
 use App\Models\ProposalTA;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\Null_;
 use Yajra\DataTables\Facades\DataTables;
 
 class MahasiswaBimbinganController extends Controller
@@ -44,20 +45,28 @@ class MahasiswaBimbinganController extends Controller
                 return date('Y', strtotime($proposal->tgl_acc));
             })
             ->addColumn('status', function ($proposal) {
-                if ($proposal->pendadaran->status == 'lulus') {
-                    $thnDaftar = substr($proposal->mahasiswa->nim, 0, 4);
-                    $thnLulus = date('Y', strtotime($proposal->pendadaran->tgl_lulus));
-                    $waktuLulus = $thnLulus - $thnDaftar;
-                    $hasilLulus = $waktuLulus - 4;
-                    if ($waktuLulus <= 4) {
-                        return '<p class="my-1 badge py-2 px-3 bg-success">Lulus</p>';
-                    } else {
-                        return '<p class="my-1 badge py-2 px-3 bg-danger"> + ' . $hasilLulus . ' tahun</p>';
-                    }
-                } elseif ($proposal->pendadaran->status == 'tidak_lulus') {
-                    return 'Tidak Lulus';
+                if ($proposal->status != 'diterima') {
+                    return '<span class="badge badge-success">' . ucwords($proposal->status) . '</span>';
                 } else {
-                    return 'Pengerjaan Skripsi';
+                    if ($proposal->pendadaran === NULL) {
+                        return 'Proses Pengerjaan Skripsi';
+                    } else {
+                        if ($proposal->pendadaran->status == 'lulus') {
+                            $thnDaftar = substr($proposal->mahasiswa->nim, 0, 4);
+                            $thnLulus = date('Y', strtotime($proposal->pendadaran->tgl_lulus));
+                            $waktuLulus = $thnLulus - $thnDaftar;
+                            $hasilLulus = $waktuLulus - 4;
+                            if ($waktuLulus <= 4) {
+                                return '<p class="my-1 badge py-2 px-3 bg-success">Lulus</p>';
+                            } else {
+                                return '<p class="my-1 badge py-2 px-3 bg-danger"> + ' . $hasilLulus . ' tahun</p>';
+                            }
+                        } elseif ($proposal->pendadaran->status == 'tidak_lulus') {
+                            return 'Tidak Lulus';
+                        } else {
+                            return 'Pengerjaan Skripsi';
+                        }
+                    }
                 }
             })
             ->rawColumns(['nim', 'nama', 'judul', 'pemb', 'tgl', 'status'])
