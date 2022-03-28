@@ -1,55 +1,72 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
 
-use Illuminate\Contracts\Http\Kernel;
-use Illuminate\Http\Request;
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website is Under Maintenance</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
 
-define('LARAVEL_START', microtime(true));
+        body {
+            background-color: #DCE2E1;
+            font-family: "Poppins";
+        }
 
-/*
-|--------------------------------------------------------------------------
-| Check If The Application Is Under Maintenance
-|--------------------------------------------------------------------------
-|
-| If the application is in maintenance / demo mode via the "down" command
-| we will load this file so that any pre-rendered content can be shown
-| instead of starting the framework, which could cause an exception.
-|
-*/
+        .container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
 
-if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
-    require $maintenance;
-}
+        .body {
+            padding: 100px 0;
+        }
 
-/*
-|--------------------------------------------------------------------------
-| Register The Auto Loader
-|--------------------------------------------------------------------------
-|
-| Composer provides a convenient, automatically generated class loader for
-| this application. We just need to utilize it! We'll simply require it
-| into the script here so we don't need to manually load our classes.
-|
-*/
+        .body h1 {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            color: #444;
+        }
 
-require __DIR__.'/../vendor/autoload.php';
+        .body img {
+            padding: 50px 0 30px;
+        }
 
-/*
-|--------------------------------------------------------------------------
-| Run The Application
-|--------------------------------------------------------------------------
-|
-| Once we have the application, we can handle the incoming request using
-| the application's HTTP kernel. Then, we will send the response back
-| to this client's browser, allowing them to enjoy our application.
-|
-*/
+        .body p {
+            color: #444;
+            font-size: 16px;
+        }
 
-$app = require_once __DIR__.'/../bootstrap/app.php';
+        footer p {
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
 
-$kernel = $app->make(Kernel::class);
+<body>
+    <section class="container">
+        <img src="img/logo/logo-dark.png" alt="Logo STITEK Bontang" width="214" class="logo">
+        <section class="body">
+            <h1>The Website is Under Maintenance</h1>
+            <img src="img/day95-app-development.png" alt="Assets Under Maintenance" width="500">
+            <p>We are currently facing some issues with our system and our team is working hard to resolve it. </p>
+        </section>
 
-$response = $kernel->handle(
-    $request = Request::capture()
-)->send();
+        <footer>
+            <p>Manajemen Tugas Akhir <strong>STITEK Bontang</strong></p>
+        </footer>
+    </section>
+</body>
 
-$kernel->terminate($request, $response);
+</html>
