@@ -19,6 +19,9 @@ class CreateProposaltaTable extends Migration
             $table->string('file_satu', 150)->nullable();
             $table->string('file_dua', 150)->nullable();
             $table->string('file_tiga', 150)->nullable();
+            $table->text('judul_satu')->nullable();
+            $table->text('judul_dua')->nullable();
+            $table->text('judul_tiga')->nullable();
             $table->date('tgl_acc')->nullable();
             $table->bigInteger('dosen_id_satu')->nullable()->references('id')->on('dosen')->onDelete('cascade');
             $table->bigInteger('dosen_id_dua')->nullable()->references('id')->on('dosen')->onDelete('cascade');
