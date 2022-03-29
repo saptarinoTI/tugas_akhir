@@ -152,9 +152,9 @@
                                 <a class="dropdown-item" href="{{ route('mahasiswa-bimbingan.index') }}">
                                     Mhs. Bimbingan
                                 </a>
-                                <a class="dropdown-item" href="{{ route('proposal-mahasiswa.index') }}">
+                                {{-- <a class="dropdown-item" href="{{ route('proposal-mahasiswa.index') }}">
                                     Proposal TA
-                                </a>
+                                </a> --}}
                             </div>
                         @endrole
 

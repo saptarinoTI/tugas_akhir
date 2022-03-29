@@ -10,8 +10,6 @@
 @endsection
 @section('main-page')
     <div class="row row-deck row-cards">
-        <span class="text-muted-light">Untuk template dari proposal tugas akhir silahkan <a
-                href="{{ asset('template/template_proposal_tugas_akhir.docx') }}" class="text-info">unduh.</a></span>
         <div class="col-12">
             <div class="card">
                 <div class="table-responsive text-muted">
@@ -76,7 +74,7 @@
     @push('before-script')
         {{-- Modal Ajuan Proposal TA --}}
         <div class="modal modal-blur fade" id="modal-ajuan" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-dialog modal-full-width modal-dialog-centered modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Ajuan Proposal Tugas Akhir</h5>
@@ -113,74 +111,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                {{-- Nama Mahasiswa --}}
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Nama Mahasiswa</label>
-                                        <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama"
-                                            value="{{ ucwords($mahasiswa->nama) }}" readonly required />
-                                        @error('nama')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                {{-- Nomor Hp --}}
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Nomor Hp</label>
-                                        <input type="number" class="form-control @error('no_hp') is-invalid @enderror"
-                                            name="no_hp" value="{{ $mahasiswa->no_hp }}" readonly required />
-                                        @error('no_hp')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    {{-- Tempat Lahir --}}
-                                    <div class="mb-3">
-                                        <label class="form-label">Tempat Lahir</label>
-                                        <input type="text" class="form-control @error('tpt_lahir') is-invalid @enderror"
-                                            name="tpt_lahir" value="{{ ucwords($mahasiswa->tpt_lahir) }}" readonly
-                                            required />
-                                        @error('tpt_lahir')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        {{-- Tanggal Lahir --}}
-                                        <label class="form-label">Tanggal Lahir</label>
-                                        <input type="date" class="form-control @error('tgl_lahir') is-invalid @enderror"
-                                            name="tgl_lahir" value="{{ $mahasiswa->tgl_lahir }}" readonly required />
-                                        @error('tgl_lahir')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            {{-- Alamat Lengkap --}}
-                            <div class="mb-3">
-                                <label class="form-label">Alamat Lengkap</label>
-                                <textarea class="form-control @error('alamat') is-invalid @enderror" rows="2" name="alamat"
-                                    required readonly />{{ ucwords($mahasiswa->alamat) }}</textarea>
-                                @error('alamat')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
+
                             <hr class="p-0 my-2" />
                             <p class="fw-semibold text-muted">Silahkan upload proposal tugas akhir. Maksimal mengajukan 3 judul
                                 untuk proposal tugas akhir.
@@ -197,13 +128,33 @@
                                     </div>
                                 @enderror
                             </div>
-                            {{-- Proposal Satu --}}
+                            <div class="mb-2">
+                                <label class="form-label">Judul Proposal Satu</label>
+                                <input type="text" class="form-control @error('judul_satu') is-invalid @enderror"
+                                    name="judul_satu" required autocomplete="off" />
+                                @error('judul_satu')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            {{-- Proposal Dua --}}
                             <div class="mb-2">
                                 <label class="form-label">Proposal Dua</label>
                                 <input type="file" class="form-control @error('file_dua') is-invalid @enderror"
                                     name="file_dua" />
                                 <span class="small text-muted-light fw-semibold">* Upload file PDF maksimal 1 MB.</span>
                                 @error('file_dua')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">Judul Proposal Dua</label>
+                                <input type="text" class="form-control @error('judul_dua') is-invalid @enderror"
+                                    name="judul_dua" autocomplete="off" />
+                                @error('judul_dua')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -216,6 +167,16 @@
                                     name="file_tiga" />
                                 <span class="small text-muted-light fw-semibold">* Upload file PDF maksimal 1 MB.</span>
                                 @error('file_tiga')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">Judul Proposal Tiga</label>
+                                <input type="text" class="form-control @error('judul_tiga') is-invalid @enderror"
+                                    name="judul_tiga" autocomplete="off" />
+                                @error('judul_tiga')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -254,8 +215,8 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">No Ajuan Proposal</label>
-                                            <input type="text" class="form-control @error('id') is-invalid @enderror"
-                                                name="id" value="{{ $proposal->id }}" readonly />
+                                            <input type="text" class="form-control @error('id') is-invalid @enderror" name="id"
+                                                value="{{ $proposal->id }}" readonly />
                                             @error('id')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -286,9 +247,11 @@
                                 <div class="mb-2">
                                     <label class="form-label">Proposal Satu</label>
                                     @if ($proposal->file_satu != null)
-                                        <p class="mb-1">File : <a href="storage/{{ $proposal->file_satu }}"
-                                                target="_blank" rel="noopener noreferrer"
-                                                class="text-info fw-semibold">Unduh</a>
+                                        <p class="mb-1"><i class="ti ti-checks"></i>
+                                            {{ ucwords($proposal->judul_satu) }}
+                                            - <a href="storage/{{ $proposal->file_satu }}" target="_blank"
+                                                rel="noopener noreferrer" class="text-info fw-semibold"><i
+                                                    class="ti ti-download"></i></a>
                                         </p>
                                     @endif
                                     </p>
@@ -301,13 +264,25 @@
                                         </div>
                                     @enderror
                                 </div>
-                                {{-- Proposal Satu --}}
+                                <div class="mb-2">
+                                    <label class="form-label">Judul Proposal Satu</label>
+                                    <input type="text" class="form-control @error('judul_satu') is-invalid @enderror"
+                                        name="judul_satu" autocomplete="off" />
+                                    @error('judul_satu')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                {{-- Proposal Dua --}}
                                 <div class="mb-2">
                                     <label class="form-label">Proposal Dua</label>
                                     @if ($proposal->file_dua != null)
-                                        <p class="mb-1">File : <a href="storage/{{ $proposal->file_dua }}"
-                                                target="_blank" rel="noopener noreferrer"
-                                                class="text-info fw-semibold">Unduh</a>
+                                        <p class="mb-1"><i class="ti ti-checks"></i>
+                                            {{ ucwords($proposal->judul_dua) }} - <a
+                                                href="storage/{{ $proposal->file_dua }}" target="_blank"
+                                                rel="noopener noreferrer" class="text-info fw-semibold"><i
+                                                    class="ti ti-download"></i></a>
                                         </p>
                                     @endif
                                     <input type="file" class="form-control @error('file_dua') is-invalid @enderror"
@@ -319,18 +294,40 @@
                                         </div>
                                     @enderror
                                 </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Judul Proposal Dua</label>
+                                    <input type="text" class="form-control @error('judul_dua') is-invalid @enderror"
+                                        name="judul_dua" autocomplete="off" />
+                                    @error('judul_dua')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
                                 {{-- Proposal Tiga --}}
                                 <div class="mb-2">
                                     <label class="form-label">Proposal Tiga</label>
                                     @if ($proposal->file_tiga != null)
-                                        <p class="mb-1">File : <a href="storage/{{ $proposal->file_tiga }}"
-                                                target="_blank" rel="noopener noreferrer"
-                                                class="text-info fw-semibold">Unduh</a></p>
+                                        <p class="mb-1"><i class="ti ti-checks"></i>
+                                            {{ ucwords($proposal->judul_tiga) }} - <a
+                                                href="storage/{{ $proposal->file_tiga }}" target="_blank"
+                                                rel="noopener noreferrer" class="text-info fw-semibold"><i
+                                                    class="ti ti-download"></i></a></p>
                                     @endif
                                     <input type="file" class="form-control @error('file_tiga') is-invalid @enderror"
                                         name="file_tiga" />
                                     <span class="small text-muted-light fw-semibold">* Upload file PDF maksimal 1 MB.</span>
                                     @error('file_tiga')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Judul Proposal Tiga</label>
+                                    <input type="text" class="form-control @error('judul_tiga') is-invalid @enderror"
+                                        name="judul_tiga" autocomplete="off" />
+                                    @error('judul_tiga')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
@@ -366,7 +363,7 @@
 
         {{-- Modal Detail Ajuan Proposal TA --}}
         <div class="modal modal-blur fade" id="modal-detail" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-full-width modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Ajuan Proposal Tugas Akhir</h5>

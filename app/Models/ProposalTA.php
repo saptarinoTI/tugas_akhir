@@ -17,7 +17,7 @@ class ProposalTA extends Model
     public $incrementing = false;
     protected $keyType = 'integer';
     protected $fillable = [
-        'id', 'mahasiswa_nim', 'file_satu', 'file_dua', 'file_tiga', 'tgl_acc', 'dosen_id_satu', 'dosen_id_dua', 'judul_ta', 'status', 'keterangan'
+        'id', 'mahasiswa_nim', 'file_satu', 'file_dua', 'file_tiga', 'judul_satu', 'judul_dua', 'judul_tiga', 'tgl_acc', 'dosen_id_satu', 'dosen_id_dua', 'judul_ta', 'status', 'keterangan'
     ];
 
     public function mahasiswa()

@@ -74,7 +74,7 @@
     @push('before-script')
         {{-- Modal Pendaftaran Seminar Hasil Tugas Akhir --}}
         <div class="modal modal-blur fade" id="modal-pendaftaran-seminarhasil" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-full-width modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Pendaftaran Seminar Hasil Tugas Akhir</h5>
@@ -268,8 +268,7 @@
                             </div>
                             <div class="mb-2">
                                 <label class="form-label">Judul Tugas Akhir</label>
-                                <textarea name="judul_ta" rows="3"
-                                    class="form-control @error('judul_ta') is-invalid @enderror" required></textarea>
+                                <textarea name="judul_ta" rows="3" class="form-control @error('judul_ta') is-invalid @enderror" required></textarea>
                                 @error('judul_ta')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -293,7 +292,7 @@
         @if ($seminar != null)
             {{-- Modal Edit Pendaftaran Seminar Hasil Tugas Akhir --}}
             <div class="modal modal-blur fade" id="modal-edit" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
+                <div class="modal-dialog modal-dialog-centered modal-full-width modal-dialog-scrollable" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Rubah Pendaftaran Seminar Hasil Tugas Akhir</h5>
@@ -521,8 +520,7 @@
                                 </div>
                                 <div class="mb-2">
                                     <label class="form-label">Judul Tugas Akhir</label>
-                                    <textarea name="judul_ta" rows="3"
-                                        class="form-control @error('judul_ta') is-invalid @enderror"
+                                    <textarea name="judul_ta" rows="3" class="form-control @error('judul_ta') is-invalid @enderror"
                                         required>{{ $seminar->judul_ta }}</textarea>
                                     @error('judul_ta')
                                         <div class="invalid-feedback">
@@ -560,7 +558,7 @@
 
         {{-- Modal Detail Pendaftaran Seminar Hasil Tugas Akhir --}}
         <div class="modal modal-blur fade" id="modal-detail" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-full-width modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Pendaftaran Seminar Hasil Tugas Akhir</h5>

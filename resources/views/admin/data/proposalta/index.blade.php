@@ -38,7 +38,7 @@
                     ],
                     // lengthChange: false,
                     order: [
-                        [0, "asc"]
+                        [2, "asc"]
                     ],
                     ajax: "{{ route('data-proposal.get') }}",
                     columns: [{

@@ -35,7 +35,7 @@
                         [10, 25, 50, "All"]
                     ],
                     order: [
-                        [0, "asc"]
+                        [2, "asc"]
                     ],
                     ajax: "{{ route('data-pendadaran.getdata') }}",
                     columns: [{
@@ -64,7 +64,7 @@
             });
         </script>
         <div class="modal modal-blur fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-dialog modal-full-width modal-dialog-centered modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title"></h5>

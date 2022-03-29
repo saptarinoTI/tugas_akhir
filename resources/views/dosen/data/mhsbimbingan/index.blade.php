@@ -1,7 +1,7 @@
 @extends('layout.app')
-@section('main-title', 'Data Proposal Tugas Akhir')
+@section('main-title', 'Data Mahasiswa')
 @section('main-page')
-    <p>Mahasiswa Proposal Tugas Akhir Sesuai dengan Pemberian Prodi.</p>
+    <p class="text-muted-light">Mahasiswa Bimbingan Sesuai dengan Pemberian Prodi.</p>
     <div class="row row-deck row-cards">
         <div class="col-12">
             <div class="card">

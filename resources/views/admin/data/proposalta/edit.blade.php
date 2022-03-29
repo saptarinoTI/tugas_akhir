@@ -30,25 +30,114 @@
               </div>
           </div>
       </div>
+      <div class="row">
+          <div class="col">
+              <span>File Ajuan Proposal Tugas Akhir</span>
+              <br />
+              <i class="ti ti-checks"></i><a href="storage/{{ $proposal->file_satu }}" target="_blank"
+                  rel="noopener noreferrer" class="text-muted"> {{ ucwords($proposal->judul_satu) }}</a>
+              <br />
+              @if ($proposal->file_dua != null)
+                  <i class="ti ti-checks"></i><a href="storage/{{ $proposal->file_dua }}" target="_blank"
+                      rel="noopener noreferrer" class="text-muted"> {{ ucwords($proposal->judul_dua) }}</a>
+              @endif
+              <br />
+              @if ($proposal->file_tiga != null)
+                  <i class="ti ti-checks"></i><a href="storage/{{ $proposal->file_tiga }}" target="_blank"
+                      rel="noopener noreferrer" class="text-muted"> {{ ucwords($proposal->judul_tiga) }}</a>
+              @endif
+
+          </div>
+      </div>
       <hr class="p-0 my-2" />
       {{-- Status Ajuan Proposal TA --}}
       <div class="mb-3">
-          <label class="form-label">Penguji Proposal Tugas Akhir</label>
-          <select type="text" class="form-select" placeholder="Select a date" id="select-tags" name="penguji_prota">
-              @if ($proposal->dosen_id_satu == null)
-                  <option>Pilih salah satu dosen penguji ....</option>
-                  @foreach ($dosens as $dosen)
-                      <option value="{{ $dosen->id }}">{{ ucwords($dosen->nama) }}</option>
-                  @endforeach
-              @else
-                  <option value="{{ $proposal->dosen_id_satu }}">{{ ucwords($proposal->dosen_satu->nama) }}</option>
-                  @foreach ($dosens as $dosen)
-                      @if ($dosen->id != $proposal->dosen_id_satu)
-                          <option value="{{ $dosen->id }}">{{ ucwords($dosen->nama) }}</option>
-                      @endif
-                  @endforeach
+          <label class="form-label">Status</label>
+          <select class="form-select" placeholder="Pilih Salah Satu ..." id="status" name="status" />
+          <option value="">Pilih salah satu ....</option>
+          <option value="diterima" name="diterima">Diterima</option>
+          <option value="ditolak" name="ditolak">Ditolak</option>
+          </select>
+      </div>
+      {{-- Tanggal ACC --}}
+      <div class="mb-3" id="tgl_acc">
+          <label class="form-label">Tanggal ACC</label>
+          <input type="date" class="form-control @error('tgl_acc') is-invalid @enderror" value="{{ old('tgl_acc') }}"
+              name="tgl_acc" autocomplete="off" />
+          @error('tgl_acc')
+              <div class="invalid-feedback">
+                  {{ $message }}
+              </div>
+          @enderror
+      </div>
+      {{-- Judul Tugas Akhir ACC --}}
+      <div class="mb-3" id="judul_ta">
+          <label class="form-label">Judul Tugas Akhir ACC</label>
+          <select name="judul_ta" class="form-select">
+              <option value="">Silahkan pilih salah satu ... </option>
+              <option
+                  value="{{ $proposal->judul_satu }}@if ($proposal->judul_dua) , {{ $proposal->judul_dua }} @endif @if ($proposal->judul_tiga) , {{ $proposal->judul_tiga }} @endif">
+                  Semua Judul</option>
+              <option value="{{ $proposal->judul_satu }}">{{ ucwords($proposal->judul_satu) }}</option>
+              @if ($proposal->judul_dua)
+                  <option value="{{ $proposal->judul_dua }}">{{ ucwords($proposal->judul_dua) }}</option>
+              @endif
+              @if ($proposal->judul_tiga)
+                  <option value="{{ $proposal->judul_tiga }}">{{ ucwords($proposal->judul_tiga) }}</option>
               @endif
           </select>
+          @error('judul_ta')
+              <div class="invalid-feedback">
+                  {{ $message }}
+              </div>
+          @enderror
+      </div>
+      {{-- Dosen --}}
+      <div class="row" id="dosen">
+          <div class="col-md-6">
+              <div class="mb-3">
+                  <label class="form-label">Dosen Pembimbing Utama</label>
+                  <select class="form-select" placeholder="Select a date" name="dosen_id_satu">
+                      <option value="">Pilih salah satu dosen pembimbing utama ....</option>
+                      @foreach ($dosens as $dosen)
+                          <option value="{{ $dosen->id }}">{{ ucwords($dosen->nama) }}</option>
+                      @endforeach
+                  </select>
+                  @error('dosen_id_satu')
+                      <div class="invalid-feedback">
+                          {{ $message }}
+                      </div>
+                  @enderror
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="mb-3">
+                  <label class="form-label">Dosen Pembimbing Pendamping</label>
+                  <select class="form-select" placeholder="Select a date" name="dosen_id_dua">
+                      <option value="">Pilih salah satu dosen pembimbing pendamping ....</option>
+                      @foreach ($dosens as $dosen)
+                          <option value="{{ $dosen->id }}">{{ ucwords($dosen->nama) }}</option>
+                      @endforeach
+                  </select>
+                  @error('dosen_id_dua')
+                      <div class="invalid-feedback">
+                          {{ $message }}
+                      </div>
+                  @enderror
+              </div>
+          </div>
+      </div>
+      {{-- Catatan --}}
+      <div class="mb-3">
+          <label class="form-label">Catatan</label>
+          <textarea class="form-control @error('keterangan') is-invalid @enderror" rows="3" name="keterangan"
+              autocomplete="off"></textarea>
+          <span class="text-muted text-sm">* Silahkan isi catatan jika status ditolak</span>
+          @error('keterangan')
+              <div class="invalid-feedback">
+                  {{ $message }}
+              </div>
+          @enderror
       </div>
       <div class="w-100 text-end">
           <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
@@ -59,3 +148,22 @@
           </button>
       </div>
   </form>
+
+  <script>
+      $(function() {
+          $('#tgl_acc').hide();
+          $('#judul_ta').hide();
+          $('#dosen').hide();
+          $('#status').change(function() {
+              if ($(this).val() == 'diterima') {
+                  $('#tgl_acc').show();
+                  $('#judul_ta').show();
+                  $('#dosen').show();
+              } else {
+                  $('#tgl_acc').hide();
+                  $('#judul_ta').hide();
+                  $('#dosen').hide();
+              }
+          });
+      });
+  </script>

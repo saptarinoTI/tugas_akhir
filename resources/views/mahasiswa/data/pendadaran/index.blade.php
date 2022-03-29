@@ -11,7 +11,9 @@
 @endsection
 @section('main-page')
     <div class="row row-deck row-cards">
-        <span class=mt-0 pt-0">Untuk ketentuan Pendadaran / Ujian Sidang Tugas Akhir silahkan lihat buku panduan TA yang
+        <span class="mt-0 pt-0 text-muted-light text-medium">Untuk ketentuan Pendadaran / Ujian Sidang Tugas Akhir silahkan
+            lihat buku panduan TA
+            yang
             bisa didapatkan dibagian Prodi.</span>
         <div class="col-12">
             <div class="card">
@@ -91,7 +93,7 @@
 
         <!-- Modal Pengajuan Pendaftaran Pendadaran Tugas Akhir -->
         <div class="modal modal-blur fade" id="modal-pendadaran" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-dialog modal-full-width modal-dialog-centered modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title"></h5>

@@ -34,6 +34,9 @@ class SeminarHasilController extends Controller
                 $noSeminar = date('Y') . $nim;
                 $seminar = SeminarHasil::where('proposalta_id', '=', $proposal->id)->first();
                 return view('mahasiswa.data.seminarhasil.index', compact('proposal', 'seminar', 'noSeminar'));
+            } else {
+                toast('Selesaikan proposal tugas akhir terlebih dahulu!', 'warning', 'top-right');
+                return redirect()->route('proposal.index');
             }
         } else {
             toast('Selesaikan proposal tugas akhir terlebih dahulu!', 'warning', 'top-right');

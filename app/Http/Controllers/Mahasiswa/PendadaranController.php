@@ -89,7 +89,7 @@ class PendadaranController extends Controller
             'ijazah_terakhir' => 'required|file|max:1024|mimetypes:application/pdf',
             'ktp' => 'required|file|max:1024|mimetypes:application/pdf',
             'akte_kelahiran' => 'required|file|max:1024|mimetypes:application/pdf',
-            'foto' => 'required|max:1024|image|mimes:jpeg,png,jpg',
+            'foto' => 'required|file|max:1024|mimetypes:image/jpeg,image/jpg,image/png',
             'judul_ta' => 'required',
         ], $messages);
         $nim = $request->nim;
@@ -114,6 +114,7 @@ class PendadaranController extends Controller
         $file->judul_ta = $request->judul_ta;
         $file->status = 'dikirim';
         $file->keterangan = 'silahkan bertemu bagian prodi teknik informatika untuk memberikan berkas tugas akhir yang sudah ditanda tangani oleh dosen pembimbing. sebanyak 4 rangkap (1 rangkap asli).';
+
         $file->save();
         Alert::success('Berhasil', 'Data pendaftaran pendadaran berhasil ditambahkan!');
         return redirect()->route('pendadaran.index');

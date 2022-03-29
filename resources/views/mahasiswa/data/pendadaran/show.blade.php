@@ -32,19 +32,19 @@
         <tr>
             <th class="col-4">Pembimbing Utama</th>
             <th>:</th>
-            <td class="text-dark fw-semibold">{{ ucwords($pendadaran->mahasiswa->proposal_satu->dosen_satu->nama) }}
+            <td class="text-dark fw-semibold">{{ ucwords($pendadaran->mahasiswa->proposal->dosen_satu->nama) }}
             </td>
         </tr>
         <tr>
             <th class="col-4">Pembimbing Pendamping</th>
             <th>:</th>
-            <td class="text-dark fw-semibold">{{ ucwords($pendadaran->mahasiswa->proposal_satu->dosen_dua->nama) }}
+            <td class="text-dark fw-semibold">{{ ucwords($pendadaran->mahasiswa->proposal->dosen_dua->nama) }}
             </td>
         </tr>
         <tr>
             <th class="col-4">Judul Tugas Akhir</th>
             <th>:</th>
-            <td class="text-dark fw-semibold">{{ ucwords($pendadaran->mahasiswa->proposal_satu->judul_ta) }}</td>
+            <td class="text-dark fw-semibold">{{ ucwords($pendadaran->mahasiswa->proposal->judul_ta) }}</td>
         </tr>
         <tr>
             <th class="col-4">Kartu Rencana Studi</th>

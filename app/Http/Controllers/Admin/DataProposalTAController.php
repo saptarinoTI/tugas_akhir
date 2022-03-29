@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Traits\FileTrait;
 use App\Models\Dosen;
 use App\Models\ProposalTA;
 use Illuminate\Http\Request;
@@ -11,6 +12,8 @@ use Yajra\DataTables\Facades\DataTables;
 
 class DataProposalTAController extends Controller
 {
+    use FileTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -80,12 +83,34 @@ class DataProposalTAController extends Controller
         $request->validate([
             'nim' => 'required',
             'nama' => 'required',
-            'penguji_prota' => 'required',
+            'status' => 'in:diterima,ditolak',
+            'tgl_acc' => 'required_if:status,diterima',
+            'judul_ta' => 'required_if:status,diterima',
+            'dosen_id_satu' => 'required_if:status,diterima',
+            'dosen_id_dua' => 'required_if:status,diterima',
+            'keterangan' => 'required_if:status,ditolak',
         ]);
         $proposal = ProposalTA::findOrFail($id);
-        $proposal->dosen_id_satu = $request->penguji_prota;
-        $proposal->status = 'diperiksa';
-        $proposal->keterangan = "ajuan proposal tugas akhir sedang diperiksa oleh dosen penguji";
+        if ($request->status === "ditolak") {
+            $this->deleteFile($proposal->file_satu);
+            $proposal->file_satu = null;
+            $proposal->judul_satu = null;
+            $this->deleteFile($proposal->file_dua);
+            $proposal->file_dua = null;
+            $proposal->judul_dua = null;
+            $this->deleteFile($proposal->file_tiga);
+            $proposal->file_tiga = null;
+            $proposal->judul_tiga = null;
+            $proposal->status = $request->status;
+            $proposal->keterangan = $request->keterangan;
+        } else if ($request->status == "diterima") {
+            $proposal->status = $request->status;
+            $proposal->tgl_acc = $request->tgl_acc;
+            $proposal->judul_ta = $request->judul_ta;
+            $proposal->dosen_id_satu = $request->dosen_id_satu;
+            $proposal->dosen_id_dua = $request->dosen_id_dua;
+            $proposal->keterangan = "Pendaftarakan Proposal Tugas Akhir Telah Diterima.";
+        }
         $proposal->save();
         Alert::success('Berhasil', 'Data berhasil diperbarui');
         return redirect()->route('data-proposal.index');

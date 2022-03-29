@@ -48,31 +48,34 @@
         @if ($proposal->status == 'dikirim')
             @if ($proposal->file_satu != null)
                 <tr>
-                    <th class="col-4">File Ajuan Satu</th>
+                    <th class="col-4">Proposal Ajuan Satu</th>
                     <th>:</th>
                     <td>
                         <a href="storage/{{ $proposal->file_satu }}" target="_blank"
-                            class="text-decoration-none text-dark fw-bolder"><i class="ti ti-files"></i></a>
+                            class="text-decoration-none text-dark fw-bolder">{{ ucwords($proposal->judul_satu) }} - <i
+                                class="ti ti-download"></i></a>
                     </td>
                 </tr>
             @endif
             @if ($proposal->file_dua != null)
                 <tr>
-                    <th class="col-4">File Ajuan Dua</th>
+                    <th class="col-4">Proposal Ajuan Dua</th>
                     <th>:</th>
                     <td>
                         <a href="storage/{{ $proposal->file_dua }}" target="_blank"
-                            class="text-decoration-none text-dark fw-bolder"><i class="ti ti-files"></i></a>
+                            class="text-decoration-none text-dark fw-bolder">{{ ucwords($proposal->judul_dua) }} - <i
+                                class="ti ti-download"></i></a>
                     </td>
                 </tr>
             @endif
             @if ($proposal->file_tiga != null)
                 <tr>
-                    <th class="col-4">File Ajuan Tiga</th>
+                    <th class="col-4">Proposal Ajuan Tiga</th>
                     <th>:</th>
                     <td>
                         <a href="storage/{{ $proposal->file_tiga }}" target="_blank"
-                            class="text-decoration-none text-dark fw-bolder"><i class="ti ti-files"></i></a>
+                            class="text-decoration-none text-dark fw-bolder">{{ ucwords($proposal->judul_tiga) }} -
+                            <i class="ti ti-download"></i></a>
                     </td>
                 </tr>
             @endif
@@ -117,7 +120,7 @@
                     <span class="badge bg-success">Diterima
                     @elseif ($proposal->status == 'ditolak')
                         <span class="badge bg-danger">Ditolak
-                        @elseif($proposal->status == 'diproses')
+                        @elseif ($proposal->status == 'diproses')
                             <span class="badge bg-dark">Diproses
                             @elseif ($proposal->status == 'diperiksa')
                                 <span class="badge bg-warning">Diperiksa

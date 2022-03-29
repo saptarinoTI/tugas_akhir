@@ -53,23 +53,31 @@ class ProposalTAController extends Controller
             'required' => ':Attribute wajib diisi.',
             'max' => ':Attribute maksimal 1MB',
             'mimetypes' => ':Attribute wajib berupa pdf',
+            'required_with' => ':Attribute wajib diisi.'
         ];
         $request->validate([
             'id' => 'required|unique:proposalta,id',
             'nim' => 'required|unique:proposalta,mahasiswa_nim',
+            'judul_satu' => 'required',
+            'judul_dua' => 'required_with:file_dua',
+            'judul_tiga' => 'required_with:file_tiga',
             'file_satu' => 'required|file|max:1024|mimetypes:application/pdf',
             'file_dua' => 'file|max:1024|mimetypes:application/pdf',
             'file_tiga' => 'file|max:1024|mimetypes:application/pdf',
         ], $messages);
+
         $proposal = new ProposalTA();
         $proposal->id = $request->id;
         $proposal->mahasiswa_nim = $request->nim;
         $proposal->file_satu = $this->upload($request, 'file_satu', 'proposal/file_satu', $request->nim);
+        $proposal->judul_satu = strtolower(htmlspecialchars($request->judul_satu));
         if ($request->file_dua != null) {
             $proposal->file_dua = $this->upload($request, 'file_dua', 'proposal/file_dua', $request->nim);
+            $proposal->judul_dua = strtolower(htmlspecialchars($request->judul_dua));
         }
         if ($request->file_tiga != null) {
             $proposal->file_tiga = $this->upload($request, 'file_tiga', 'proposal/file_tiga', $request->nim);
+            $proposal->judul_tiga = strtolower(htmlspecialchars($request->judul_tiga));
         }
         $proposal->keterangan = "pendaftaran telah dikirim, silahkan menunggu konfirmasi dari prodi.";
         $result = $proposal->save();
@@ -114,25 +122,29 @@ class ProposalTAController extends Controller
         $request->validate([
             'id' => 'required',
             'nim' => 'required',
-            'file_satu' => 'file|max:1024|mimetypes:application/pdf',
-            'file_dua' => 'file|max:1024|mimetypes:application/pdf',
-            'file_tiga' => 'file|max:1024|mimetypes:application/pdf',
+            'judul_satu' => 'required_with:file_satu',
+            'judul_dua' => 'required_with:file_dua',
+            'judul_tiga' => 'required_with:file_tiga',
+            'file_satu' => 'required_with:judul_satu|file|max:1024|mimetypes:application/pdf',
+            'file_dua' => 'required_with:judul_dua|file|max:1024|mimetypes:application/pdf',
+            'file_tiga' => 'required_with:judul_tiga|file|max:1024|mimetypes:application/pdf',
         ]);
+
+        // dd($request->all());
         $proposal = ProposalTA::findOrFail($id);
         if ($request->file_satu != null) {
             $proposal->file_satu = $this->upload($request, 'file_satu', 'proposal/file_satu', $request->nim);
+            $proposal->judul_satu = strtolower(htmlspecialchars($request->judul_satu));
         }
         if ($request->file_dua != null) {
             $proposal->file_dua = $this->upload($request, 'file_dua', 'proposal/file_dua', $request->nim);
+            $proposal->judul_dua = strtolower(htmlspecialchars($request->judul_dua));
         }
         if ($request->file_tiga != null) {
             $proposal->file_tiga = $this->upload($request, 'file_tiga', 'proposal/file_tiga', $request->nim);
+            $proposal->judul_tiga = strtolower(htmlspecialchars($request->judul_tiga));
         }
-        if ($proposal->dosen_id_satu != null) {
-            $proposal->status = "diperiksa";
-        } else {
-            $proposal->status = "dikirim";
-        }
+        $proposal->status = "dikirim";
         $proposal->keterangan = "pendaftaran telah dikirim, silahkan menunggu konfirmasi dari prodi.";
         $result = $proposal->save();
         if ($result) {

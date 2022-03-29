@@ -304,8 +304,7 @@
     </div>
     <div class="mb-2">
         <label class="form-label">Judul Tugas Akhir</label>
-        <textarea name="judul_ta" rows="3" class="form-control @error('judul_ta') is-invalid @enderror"
-            required></textarea>
+        <textarea name="judul_ta" rows="3" class="form-control @error('judul_ta') is-invalid @enderror" required></textarea>
         @error('judul_ta')
             <div class="invalid-feedback">
                 {{ $message }}

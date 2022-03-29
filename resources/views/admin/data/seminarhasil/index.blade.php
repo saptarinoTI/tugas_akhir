@@ -37,7 +37,7 @@
                     ],
                     // lengthChange: false,
                     order: [
-                        [0, "asc"]
+                        [2, "asc"]
                     ],
                     ajax: "{{ route('data-seminar-hasil.getdata') }}",
                     columns: [{
