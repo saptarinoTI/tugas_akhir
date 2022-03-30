@@ -38,7 +38,7 @@
                         [10, 25, 50, "All"]
                     ],
                     order: [
-                        [0, "asc"]
+                        [0, "desc"]
                     ],
                     ajax: "{{ route('data-mahasiswa.get') }}",
                     columns: [{

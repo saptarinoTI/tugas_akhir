@@ -124,19 +124,175 @@
                 </div>
             </div>
         </div>
+        <!-- Pertahun -->
+        <div class="row row-deck row-cards my-1">
+            <div class="col-sm-6 col-lg-3">
+                <div class="card card-sm">
+                    <a href="{{ route('data-mahasiswa.index') }}" class="text-decoration-none">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <span class="bg-blue text-white avatar">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users"
+                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <circle cx="9" cy="7" r="4"></circle>
+                                            <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                            <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="col">
+                                    <div class="fw-semibold text-muted mt-2">
+                                        Mahasiswa Terdaftar {{ date('Y') }}
+                                    </div>
+                                    <div class="fw-bolder text-muted mb-2 mt-1">
+                                        <span class="fs-2">{{ $totalMhsTahun }} </span> <span
+                                            class="fw-lighter">
+                                            Mahasiswa</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="card card-sm">
+                    <a href="{{ route('data-proposal.index') }}" class="text-decoration-none">
+                        @if ($totalProposal > 0)
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                <span class="visually-hidden">New alerts</span>
+                            </span>
+                        @endif
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <span class="bg-red text-white avatar">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file"
+                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                            <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="col">
+                                    <div class="fw-semibold text-muted mt-2">
+                                        Pendt. ProposalTA Baru
+                                    </div>
+                                    <div class="fw-bolder text-muted mb-2 mt-1">
+                                        <span class="fs-2">{{ $totalProposal }} </span> <span
+                                            class="fw-lighter">
+                                            Mahasiswa</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="card card-sm">
+                    <a href="{{ route('data-seminar-hasil.index') }}" class="text-decoration-none">
+                        @if ($totalSemhas > 0)
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                <span class="visually-hidden">New alerts</span>
+                            </span>
+                        @endif
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <span class="bg-yellow text-white avatar">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-minus"
+                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                            <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
+                                            </path>
+                                            <line x1="9" y1="14" x2="15" y2="14"></line>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="col">
+                                    <div class="fw-semibold text-muted mt-2">
+                                        Pendt. Seminar Hasil Baru
+                                    </div>
+                                    <div class="fw-bolder text-muted mb-2 mt-1">
+                                        <span class="fs-2">{{ $totalSemhas }} </span> <span class="fw-lighter">
+                                            Mahasiswa</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="card card-sm">
+                    <a href="{{ route('data-pendadaran.index') }}" class="text-decoration-none">
+                        @if ($totalPend > 0)
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                <span class="visually-hidden">New alerts</span>
+                            </span>
+                        @endif
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <span class="bg-green text-white avatar">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-text"
+                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                            <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
+                                            </path>
+                                            <line x1="9" y1="9" x2="10" y2="9"></line>
+                                            <line x1="9" y1="13" x2="15" y2="13"></line>
+                                            <line x1="9" y1="17" x2="15" y2="17"></line>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="col">
+                                    <div class="fw-semibold text-muted mt-2">
+                                        Pendt. Pendadaran Baru
+                                    </div>
+                                    <div class="fw-bolder text-muted mb-2 mt-1">
+                                        <span class="fs-2">{{ $totalPend }} </span> <span class="fw-lighter">
+                                            Mahasiswa</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
     @endrole
 
     @role('dosen')
         <div class="row row-deck row-cards">
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div class="fw-semibold text-muted">Total Mhs.Bimbingan</div>
                             <div class="ms-auto">
                                 <svg xmlns=" http://www.w3.org/2000/svg"
-                                    class="icon icon-tabler icon-tabler-users icon-dashboard text-purple" width="32" height="32"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    class="icon icon-tabler icon-tabler-users icon-dashboard text-purple" width="32"
+                                    height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                     stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <circle cx="9" cy="7" r="4"></circle>
@@ -151,7 +307,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
@@ -174,11 +330,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <div class="fw-semibold text-muted" id="lulus">Mhs. Bimbingan Lulus Tepat</div>
+                            <div class="fw-semibold text-muted" id="lulus">Mhs. Bimbingan Lulus</div>
                             <div class="ms-auto">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="icon icon-tabler icon-tabler-user-check icon-dashboard text-success" width="24"
@@ -195,72 +351,6 @@
                         <div class="text-muted">Mahasiswa</div>
                     </div>
                 </div>
-                {{-- <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div class="fw-semibold text-muted" id="lulus">Total Mhs.Bimbingan Lulus</div>
-                            <div class="ms-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="icon icon-tabler icon-tabler-user-check icon-dashboard text-success" width="24"
-                                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <circle cx="9" cy="7" r="4"></circle>
-                                    <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                                    <path d="M16 11l2 2l4 -4"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <h2 class="fw-bold text-muted p-0 m-0" id="mhsBimbinganLulus">{{ $mhsBimbinganLulus }}</h2>
-                        <div class="text-muted">Mahasiswa</div>
-                    </div>
-                </div> --}}
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div class="fw-semibold text-muted" id="blm_lulus">Mhs. Bimbingan Lulus Terlambat
-                            </div>
-                            <div class="ms-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="icon icon-tabler icon-tabler-user-exclamation icon-dashboard text-danger" width="24"
-                                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <circle cx="9" cy="7" r="4"></circle>
-                                    <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                                    <line x1="19" y1="7" x2="19" y2="10"></line>
-                                    <line x1="19" y1="14" x2="19" y2="14.01"></line>
-                                </svg>
-                            </div>
-                        </div>
-                        <h2 class="fw-bold text-muted p-0 m-0" id="mhsBimbinganBlmLulus">{{ $mhsBimbinganBlmLulus }}</h2>
-                        <div class="text-muted">Mahasiswa</div>
-                    </div>
-                </div>
-                {{-- <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div class="fw-semibold text-muted" id="blm_lulus">Total Mhs.Bimbingan Blm.Lulus
-                            </div>
-                            <div class="ms-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="icon icon-tabler icon-tabler-user-exclamation icon-dashboard text-danger" width="24"
-                                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <circle cx="9" cy="7" r="4"></circle>
-                                    <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                                    <line x1="19" y1="7" x2="19" y2="10"></line>
-                                    <line x1="19" y1="14" x2="19" y2="14.01"></line>
-                                </svg>
-                            </div>
-                        </div>
-                        <h2 class="fw-bold text-muted p-0 m-0" id="mhsBimbinganBlmLulus">{{ $mhsBimbinganBlmLulus }}</h2>
-                        <div class="text-muted">Mahasiswa</div>
-                    </div>
-                </div> --}}
             </div>
         </div>
     @endrole

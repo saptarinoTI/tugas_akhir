@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mahasiswa;
 use App\Models\Pendadaran;
 use App\Models\ProposalTA;
+use App\Models\SeminarHasil;
 use App\Models\User;
 use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
@@ -24,6 +26,7 @@ class HomeController extends Controller
             $mhsBimbingan = ProposalTA::where('dosen_id_satu', $idDosen)->orWhere('dosen_id_dua', $idDosen)->count();
             /* Lulusan Tahun Sekarang */
             $mhsBimbinganTahun = ProposalTA::where('dosen_id_satu', $idDosen)->orWhere('dosen_id_dua', $idDosen)->whereYear('tgl_acc', date('Y'))->count();
+
             /* Bimbingan Lulus */
             $mhsBimbinganLulus = Pendadaran::where('status', '=', 'lulus')->whereHas('proposal', function ($query) {
                 $query->where('dosen_id_satu', auth()->user()->id)->orWhere('dosen_id_dua', auth()->user()->id);
@@ -49,7 +52,13 @@ class HomeController extends Controller
                     $totalMhsLambat[] = 0;
                 }
             }
-            return view('home.index', compact('totalMhsLulus', 'totalMhsLulusThnIni', 'totalMhsTepat', 'totalMhsLambat'));
+
+
+            $totalMhsTahun = Mahasiswa::whereYear('created_at', date('Y'))->count();
+            $totalProposal = ProposalTA::where('status', 'dikirim')->count();
+            $totalSemhas = SeminarHasil::where('status', 'dikirim')->count();
+            $totalPend = Pendadaran::where('status', 'dikirim')->count();
+            return view('home.index', compact('totalMhsLulus', 'totalMhsLulusThnIni', 'totalMhsTepat', 'totalMhsLambat', 'totalMhsTahun', 'totalProposal', 'totalSemhas', 'totalPend'));
         } else {
             return redirect()->route('login');
         }
@@ -80,12 +89,12 @@ class HomeController extends Controller
 
     public function registerEmailGet()
     {
-        $email = auth()->user()->email;
-        if ($email == NULL) {
-            return view('auth.register-email');
-        } else {
-            return back();
-        }
+        // $email = auth()->user()->email;
+        // if ($email == NULL) {
+        return view('auth.register-email');
+        // } else {
+        //     return back();
+        // }
     }
 
     public function registerEmailPost(Request $request)
