@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ProposalTAExport;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\FileTrait;
 use App\Models\Dosen;
 use App\Models\ProposalTA;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -192,5 +194,10 @@ class DataProposalTAController extends Controller
             })
             ->rawColumns(['nim', 'nama', 'status', 'ket', 'btn'])
             ->make(true);
+    }
+
+    public function export()
+    {
+        return Excel::download(new ProposalTAExport, 'data-proposal-ta' . date('H:i:s') . '.xlsx');
     }
 }

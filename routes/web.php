@@ -92,6 +92,7 @@ Route::middleware(['auth', 'verified', 'role:admin|superadmin|prodi'])->group(fu
     Route::get('data-proposal/get', [DataProposalTAController::class, 'getData'])->name('data-proposal.get');
     Route::get('data-proposal/{id}/dosen', [DataProposalTAController::class, 'editDosen'])->name('data-proposal.dosen');
     Route::patch('data-proposal/{id}/dosen', [DataProposalTAController::class, 'updateDosen'])->name('data-proposal.dosen.update');
+    Route::get('data-proposal/export', [DataProposalTAController::class, 'export'])->name('data-proposal.export');
     Route::resource('data-proposal', DataProposalTAController::class);
     /* Seminar Hasil */
     Route::get('data-seminar-hasil/getdata', [DataSeminarHasilController::class, 'getData'])->name('data-seminar-hasil.getdata');

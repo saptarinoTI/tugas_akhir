@@ -1,5 +1,10 @@
 @extends('layout.app')
 @section('main-title', 'Data Ajuan Proposal Tugas Akhir')
+@section('main-title2')
+    <a href="{{ route('data-proposal.export') }}" class="btn btn-light d-block d-sm-inline-block my-1 py-1 px-2">
+        <span class="small">Export Data Proposal</span>
+    </a>
+@endsection
 @section('main-page')
     <div class="row row-deck row-cards">
         <div class="col-12">
