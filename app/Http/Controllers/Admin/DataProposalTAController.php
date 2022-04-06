@@ -23,8 +23,8 @@ class DataProposalTAController extends Controller
      */
     public function index()
     {
-        $dosens = Dosen::first();
-        dd($dosens->proposal);
+        // $dosens = Dosen::first();
+        // dd($dosens->proposal);
         return view('admin.data.proposalta.index');
     }
 
