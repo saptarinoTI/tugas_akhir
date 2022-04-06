@@ -26,7 +26,7 @@ class CreateProposaltaTable extends Migration
             $table->bigInteger('dosen_id_satu')->nullable()->references('id')->on('dosen')->onDelete('cascade');
             $table->bigInteger('dosen_id_dua')->nullable()->references('id')->on('dosen')->onDelete('cascade');
             $table->text('judul_ta')->nullable();
-            $table->enum('status', ['dikirim', 'diproses', 'diperiksa', 'diterima', 'ditolak'])->default('dikirim');
+            $table->enum('status', ['dikirim', 'diterima', 'ditolak', 'selesai'])->default('dikirim');
             $table->text('keterangan');
             $table->timestamps();
         });

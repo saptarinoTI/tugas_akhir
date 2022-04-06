@@ -21,21 +21,29 @@ class HomeController extends Controller
         if (auth()->user()->hasRole('mahasiswa')) {
             return view('home.index');
         } elseif (auth()->user()->hasRole('dosen')) {
-            $idDosen = auth()->user()->id;
-            /* Total Mahasiswa Bimbingan */
-            $mhsBimbingan = ProposalTA::where('dosen_id_satu', $idDosen)->orWhere('dosen_id_dua', $idDosen)->count();
-            /* Lulusan Tahun Sekarang */
-            $mhsBimbinganTahun = ProposalTA::where('dosen_id_satu', $idDosen)->orWhere('dosen_id_dua', $idDosen)->whereYear('tgl_acc', date('Y'))->count();
+            $dosen = auth()->user()->id;
+            $proposalProgres = ProposalTA::where([
+                ['dosen_id_satu', '=', $dosen],
+                ['status', '=', 'diterima'],
+            ])
+                ->orWhere([
+                    ['dosen_id_dua', '=', $dosen],
+                    ['status', '=', 'diterima'],
+                ])->get();
 
-            /* Bimbingan Lulus */
-            $mhsBimbinganLulus = Pendadaran::where('status', '=', 'lulus')->whereHas('proposal', function ($query) {
-                $query->where('dosen_id_satu', auth()->user()->id)->orWhere('dosen_id_dua', auth()->user()->id);
-            })->count();
-            /* Bimbingan Belum Lulus */
-            $mhsBimbinganBlmLulus = Pendadaran::where('status', '=', 'tidak_lulus')->whereHas('proposal', function ($query) {
-                $query->where('dosen_id_satu', auth()->user()->id)->orWhere('dosen_id_dua', auth()->user()->id);
-            })->count();
-            return view('home.index', compact('mhsBimbingan', 'mhsBimbinganTahun', 'mhsBimbinganLulus', 'mhsBimbinganBlmLulus'));
+            $semhasProgres = SeminarHasil::where('status', 'diterima')
+                ->whereHas('proposal', function ($query) {
+                    $query->where('dosen_id_satu', auth()->user()->id)
+                        ->orWhere('dosen_id_dua', auth()->user()->id);
+                })->get();
+
+            $pendadaranProgres = Pendadaran::where('status', 'diterima')
+                ->whereHas('proposal', function ($query) {
+                    $query->where('dosen_id_satu', auth()->user()->id)
+                        ->orWhere('dosen_id_dua', auth()->user()->id);
+                })->get();
+
+            return view('home.index', compact('proposalProgres', 'semhasProgres', 'pendadaranProgres'));
         } elseif (auth()->user()->hasRole('superadmin|admin|prodi')) {
             $pendadaran = Pendadaran::where('status', '=', 'lulus')->get();
             $totalMhsLulus = Pendadaran::where('status', 'lulus')->count();

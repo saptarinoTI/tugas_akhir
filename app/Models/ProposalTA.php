@@ -34,7 +34,7 @@ class ProposalTA extends Model
     }
     public function semhas()
     {
-        return $this->hasMany(SeminarHasil::class, 'proposalta_id', 'id');
+        return $this->hasOne(SeminarHasil::class, 'proposalta_id', 'id');
     }
     public function pendadaran()
     {

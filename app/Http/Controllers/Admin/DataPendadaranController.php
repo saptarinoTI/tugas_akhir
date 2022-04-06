@@ -83,10 +83,12 @@ class DataPendadaranController extends Controller
         if ($pendadaran->status == 'diterima') {
             $pendadaran->keterangan = 'pendaftarakan telah diterima, silahkan menunggu untuk jadwal sidang pendadaran.';
             $pendadaran->tgl_lulus = null;
+            $pendadaran->proposal->semhas->status = 'selesai';
         } else {
             $pendadaran->keterangan = strtolower(htmlspecialchars($request->keterangan));
             $pendadaran->tgl_lulus = null;
         }
+        $pendadaran->proposal->semhas->save();
         $pendadaran->save();
         Alert::success('Berhasil', 'Status pendadaran tugas akhir berhasil dirubah!');
         return redirect()->route('data-pendadaran.index');

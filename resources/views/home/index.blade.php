@@ -283,26 +283,25 @@
     @endrole
 
     @role('dosen')
-        <div class="row row-deck row-cards">
+        <div class="row row-deck row-cards mb-3">
             <div class="col-sm-6 col-lg-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <div class="fw-semibold text-muted">Total Mhs.Bimbingan</div>
+                            <div class="fw-semibold text-muted">Proposal Tugas Akhir</div>
                             <div class="ms-auto">
-                                <svg xmlns=" http://www.w3.org/2000/svg"
-                                    class="icon icon-tabler icon-tabler-users icon-dashboard text-purple" width="32"
-                                    height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-minus"
+                                    width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
+                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <circle cx="9" cy="7" r="4"></circle>
-                                    <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                    <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
+                                    <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
+                                    </path>
+                                    <line x1="9" y1="14" x2="15" y2="14"></line>
                                 </svg>
                             </div>
                         </div>
-                        <h2 class="fw-bold text-muted p-0 m-0">{{ $mhsBimbingan }}</h2>
+                        <h2 class="fw-bold text-muted p-0 m-0">{{ $proposalProgres->count() }}</h2>
                         <div class="text-muted">Mahasiswa</div>
                     </div>
                 </div>
@@ -311,21 +310,21 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <div class="fw-semibold text-muted" id="tahun">Mhs.Bimbingan {{ date('Y') }}</div>
+                            <div class="fw-semibold text-muted">Seminar Hasil</div>
                             <div class="ms-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="icon icon-tabler icon-tabler-user-search icon-dashboard text-info" width="24"
-                                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-description"
+                                    width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
+                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <circle cx="12" cy="7" r="4"></circle>
-                                    <path d="M6 21v-2a4 4 0 0 1 4 -4h1"></path>
-                                    <circle cx="16.5" cy="17.5" r="2.5"></circle>
-                                    <path d="M18.5 19.5l2.5 2.5"></path>
+                                    <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
+                                    </path>
+                                    <path d="M9 17h6"></path>
+                                    <path d="M9 13h6"></path>
                                 </svg>
                             </div>
                         </div>
-                        <h2 class="fw-bold text-muted p-0 m-0" id="mhsBimbinganTahun">{{ $mhsBimbinganTahun }}</h2>
+                        <h2 class="fw-bold text-muted p-0 m-0">{{ $semhasProgres->count() }}</h2>
                         <div class="text-muted">Mahasiswa</div>
                     </div>
                 </div>
@@ -334,25 +333,88 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <div class="fw-semibold text-muted" id="lulus">Mhs. Bimbingan Lulus</div>
+                            <div class="fw-semibold text-muted">Pendadaran</div>
                             <div class="ms-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="icon icon-tabler icon-tabler-user-check icon-dashboard text-success" width="24"
-                                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-text"
+                                    width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
+                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <circle cx="9" cy="7" r="4"></circle>
-                                    <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                                    <path d="M16 11l2 2l4 -4"></path>
+                                    <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
+                                    </path>
+                                    <line x1="9" y1="9" x2="10" y2="9"></line>
+                                    <line x1="9" y1="13" x2="15" y2="13"></line>
+                                    <line x1="9" y1="17" x2="15" y2="17"></line>
                                 </svg>
                             </div>
                         </div>
-                        <h2 class="fw-bold text-muted p-0 m-0" id="mhsBimbinganLulus">{{ $mhsBimbinganLulus }}</h2>
+                        <h2 class="fw-bold text-muted p-0 m-0">{{ $pendadaranProgres->count() }}</h2>
                         <div class="text-muted">Mahasiswa</div>
                     </div>
                 </div>
             </div>
         </div>
+
+
+        <!-- <div class="row row-deck row-cards">
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="card">
+                                               <div class="card-body">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="fw-semibold text-dark">Proposal Tugas Akhir</div>
+                                                    <div class="ms-auto">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-minus"
+                                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
+                                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                            <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                                            <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
+                                                            </path>
+                                                            <line x1="9" y1="14" x2="15" y2="14"></line>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <h2 class="fw-bold text-dark p-0 m-0">{{ $proposalProgres->count() }}</h2>
+                                                <div class="text-dark">Mahasiswa</div>
+                                                {{-- </div> --}}
+                                                <div class="accordion mt-3" id="accordion-example">
+                                                    <div class="accordion-item">
+                                                        <h2 class="accordion-header" id="heading-1">
+                                                            <button class="accordion-button " type="button" data-bs-toggle="collapse"
+                                                                data-bs-target="#collapse-1" aria-expanded="true">
+                                                                Mahasiswa Proposal Tugas Akhir
+                                                            </button>
+                                                        </h2>
+                                                        <div id="collapse-1" class="accordion-collapse collapse show"
+                                                            data-bs-parent="#accordion-example">
+                                                            <div class="accordion-body pt-0">
+                                                                @foreach ($proposalProgres as $item)
+        <div class="list-group list-group-flush list-group-hoverable">
+                                                                        <div class="list-group-item">
+                                                                            <div class="row align-items-center">
+                                                                                <div class="col-auto"><span class="badge bg-red"></span></div>
+                                                                                <div class="col text-truncate">
+                                                                                    <a href="#" class="text-reset d-block">Paweł Kuna</a>
+                                                                                    <div class="d-block text-muted text-truncate mt-n1">Change
+                                                                                        deprecated
+                                                                                        html
+                                                                                        tags to text decoration classes (#29604)</div>
+                                                                                </div>
+                                                                                <div class="col-auto">
+                                                                                    fjkdsnjfknsdjk
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+        @endforeach
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
     @endrole
 
     @role('mahasiswa')
@@ -372,12 +434,14 @@
                         <h2>Informasi Seminar Hasil</h2>
                         <p>Mendaftarkan diri dalam Seminar Hasil TA dengan menyiapkan syarat-syarat sebagai berikut:</p>
                         <ol>
-                            <li>Naskah TA yang sudah ditanda* tangani oleh pembimbing sebanyak 1 rangkap asli + 3 rangkap
+                            <li>Naskah TA yang sudah ditanda* tangani oleh pembimbing sebanyak 1 rangkap asli + 3
+                                rangkap
                                 fotocopy.</li>
                             <li>Kartu Rencana Studi</li>
                             <li>Transkip Nilai</li>
                             <li>Bukti Penyerahan Laporan Kerja Praktek</li>
-                            <li>Foto Copy Kartu Kuning / Surat Keterangan Keuangan Dari BAUK (Dengan Keterangan Pembayaran Tugas
+                            <li>Foto Copy Kartu Kuning / Surat Keterangan Keuangan Dari BAUK (Dengan Keterangan
+                                Pembayaran Tugas
                                 Akhir Minimal 50%)</li>
                             <li>Menunjukan Lembar Aktifitas Tugas Akhir / Lembar Konsultasi</li>
                         </ol>
@@ -398,7 +462,8 @@
                             <li>Sertifikat TOEFL</li>
                             <li>Fotocopy ijazah terakhir</li>
                             <li>Fotocopy ijazah terakhir</li>
-                            <li>Foto 3 x 4 berwarna (cetak dan softcopy), latar belakang merah, pakaian kemeja putih dan jas
+                            <li>Foto 3 x 4 berwarna (cetak dan softcopy), latar belakang merah, pakaian kemeja putih dan
+                                jas
                                 berwarna hitam (pria memakai dasi)</li>
                         </ol>
                         <div class="w-100 text-end">

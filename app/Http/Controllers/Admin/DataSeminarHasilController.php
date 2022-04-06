@@ -84,10 +84,12 @@ class DataSeminarHasilController extends Controller
         if ($seminar_hasil->status == 'diterima') {
             $seminar_hasil->keterangan = 'pendaftarakan telah diterima, silahkan menunggu untuk jadwal sidang seminar hasil.';
             $seminar_hasil->tgl_acc = null;
+            $seminar_hasil->proposal->status = 'selesai';
         } else {
             $seminar_hasil->keterangan = strtolower(htmlspecialchars($request->keterangan));
             $seminar_hasil->tgl_acc = null;
         }
+        $seminar_hasil->proposal->save();
         $seminar_hasil->save();
         Alert::success('Berhasil', 'Status seminar hasil berhasil dirubah!');
         return redirect()->route('data-seminar-hasil.index');
@@ -143,7 +145,7 @@ class DataSeminarHasilController extends Controller
             ->addColumn('btn', function ($row) {
                 if ($row->status == 'ditolak') {
                     return '<a href="#modal" data-remote="' . route('data-seminar-hasil.show', $row->id) . '" data-bs-toggle="modal" data-bs-target="#modal" data-title="Detail Data Seminar Tugas Aakhir (' . $row->mahasiswa_nim . ' - ' . ucwords($row->mahasiswa->nama) . ')" class="my-1 btn btn-sm py-2 border-0 rounded-2 btn-info"><i class="ti ti-eye"></i></a>';
-                } elseif ($row->status == 'selesai') {
+                } elseif ($row->status == 'diterima' || $row->status == 'selesai') {
                     return '<a href="#modal" data-remote="' . route('data-seminar-hasil.show', $row->id) . '" data-bs-toggle="modal" data-bs-target="#modal" data-title="Detail Data Seminar Tugas Aakhir (' . $row->mahasiswa_nim . ' - ' . ucwords($row->mahasiswa->nama) . ')" class="my-1 btn btn-sm py-2 border-0 rounded-2 btn-info"><i class="ti ti-eye"></i></a>';
                 } else {
                     return '<a href="#modal" data-remote="' . route('data-seminar-hasil.edit', $row->id) . '" data-bs-toggle="modal" data-bs-target="#modal" data-title="Update Pendaftaram Seminar Hasil Tugas Akhir" class="my-1 btn btn-sm py-2 border-0 rounded-2 btn-dark"><i class="ti ti-pencil"></i></a>

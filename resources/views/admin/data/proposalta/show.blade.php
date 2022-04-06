@@ -1,5 +1,5 @@
 <div class="table-responsive-lg">
-    <table class="table app-table-hover mb-0 text-left">
+    <table class="table app-table-hover my-0 text-left">
         <tr>
             <th class="col-4">Id Ajuan</th>
             <th>:</th>
@@ -117,15 +117,13 @@
             <th>:</th>
             <td>
                 @if ($proposal->status == 'diterima')
-                    <span class="badge bg-success">Diterima
+                    <span class="badge bg-dark">Diterima
                     @elseif ($proposal->status == 'ditolak')
                         <span class="badge bg-danger">Ditolak
-                        @elseif ($proposal->status == 'diproses')
-                            <span class="badge bg-dark">Diproses
-                            @elseif ($proposal->status == 'diperiksa')
-                                <span class="badge bg-warning">Diperiksa
-                                @else
-                                    <span class="badge bg-info">Dikirim
+                        @elseif ($proposal->status == 'selesai')
+                            <span class="badge bg-success">Selesai
+                            @else
+                                <span class="badge bg-info">Dikirim
                 @endif
                 </span>
             </td>

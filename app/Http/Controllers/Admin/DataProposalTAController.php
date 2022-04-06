@@ -23,6 +23,8 @@ class DataProposalTAController extends Controller
      */
     public function index()
     {
+        $dosens = Dosen::first();
+        dd($dosens->proposal);
         return view('admin.data.proposalta.index');
     }
 
@@ -104,14 +106,18 @@ class DataProposalTAController extends Controller
             $proposal->file_tiga = null;
             $proposal->judul_tiga = null;
             $proposal->status = $request->status;
-            $proposal->keterangan = $request->keterangan;
+            $proposal->keterangan = ucwords(htmlspecialchars($request->keterangan));
         } else if ($request->status == "diterima") {
             $proposal->status = $request->status;
             $proposal->tgl_acc = $request->tgl_acc;
             $proposal->judul_ta = $request->judul_ta;
             $proposal->dosen_id_satu = $request->dosen_id_satu;
             $proposal->dosen_id_dua = $request->dosen_id_dua;
-            $proposal->keterangan = "Pendaftarakan Proposal Tugas Akhir Telah Diterima.";
+            if ($request->keterangan) {
+                $proposal->keterangan  = ucwords(htmlspecialchars($request->keterangan));
+            } else {
+                $proposal->keterangan = "Pendaftarakan Proposal Tugas Akhir Telah Diterima.";
+            }
         }
         $proposal->save();
         Alert::success('Berhasil', 'Data berhasil diperbarui');
@@ -166,13 +172,11 @@ class DataProposalTAController extends Controller
             })
             ->addColumn('status', function ($row) {
                 if ($row->status == 'diterima') {
-                    return '<span class="badge bg-success">Diterima</span>';
+                    return '<span class="badge bg-dark">Diterima</span>';
                 } elseif ($row->status == 'ditolak') {
                     return '<span class="badge bg-danger">Ditolak</span>';
-                } elseif ($row->status == 'diproses') {
-                    return '<span class="badge bg-dark">Diproses</span>';
-                } elseif ($row->status == 'diperiksa') {
-                    return '<span class="badge bg-warning">Diperiksa</span>';
+                } elseif ($row->status == 'selesai') {
+                    return '<span class="badge bg-success">Selesai</span>';
                 } else {
                     return '<span class="badge bg-info">Dikirm</span>';
                 }
@@ -183,9 +187,7 @@ class DataProposalTAController extends Controller
             ->addColumn('btn', function ($row) {
                 if ($row->status == 'ditolak') {
                     return '<a href="#modal" data-remote="' . route('data-proposal.show', $row->id) . '" data-bs-toggle="modal" data-bs-target="#modal" data-title="Detail Proposal Tugas Akhir (' . $row->mahasiswa_nim . ' - ' . ucwords($row->mahasiswa->nama) . ')" class="my-1 btn btn-sm py-2 border-0 rounded-2 btn-info"><i class="ti ti-eye"></i></a>';
-                } elseif ($row->status == 'diproses') {
-                    return '<a href="#modal" data-remote="' . route('data-proposal.dosen', $row->id) . '" data-bs-toggle="modal" data-bs-target="#modal" data-title="Update Ajuan Tugas Akhir" class="my-1 btn btn-sm py-2 border-0 rounded-2 btn-dark"><i class="ti ti-pencil"></i></a>';
-                } elseif ($row->status == 'diterima') {
+                } elseif ($row->status == 'diterima' || $row->status == 'selesai') {
                     return '<a href="#modal" data-remote="' . route('data-proposal.show', $row->id) . '" data-bs-toggle="modal" data-bs-target="#modal" data-title="Detail Proposal Tugas Akhir (' . $row->mahasiswa_nim . ' - ' . ucwords($row->mahasiswa->nama) . ')" class="my-1 btn btn-sm py-2 border-0 rounded-2 btn-info"><i class="ti ti-eye"></i></a>';
                 } else {
                     return '<a href="#modal" data-remote="' . route('data-proposal.edit', $row->id) . '" data-bs-toggle="modal" data-bs-target="#modal" data-title="Update Ajuan Tugas Akhir" class="my-1 btn btn-sm py-2 border-0 rounded-2 btn-dark"><i class="ti ti-pencil"></i></a>
