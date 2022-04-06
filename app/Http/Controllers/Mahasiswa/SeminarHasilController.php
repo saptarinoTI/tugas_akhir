@@ -29,7 +29,7 @@ class SeminarHasilController extends Controller
             return redirect()->route('mahasiswa.index');
         }
         if ($proposal) {
-            $statusProposal = $proposal->status == 'diterima';
+            $statusProposal = $proposal->status == 'selesai';
             if ($statusProposal) {
                 $noSeminar = date('Y') . $nim;
                 $seminar = SeminarHasil::where('proposalta_id', '=', $proposal->id)->first();
@@ -90,7 +90,7 @@ class SeminarHasilController extends Controller
         $seminar_hasil->kartu_kuning = $this->upload($request, 'kartu_kuning', 'semhas/kartu_kuning', $nim);
         $seminar_hasil->sk_keuangan = $this->upload($request, 'sk_keuangan', 'semhas/sk_keuangan', $nim);
         $seminar_hasil->lmbr_konsultasi = $this->upload($request, 'lmbr_konsultasi', 'semhas/lmbr_konsultasi', $nim);
-        $seminar_hasil->judul_ta = $request->judul_ta;
+        $seminar_hasil->judul_ta = ucwords(htmlspecialchars($request->judul_ta));
         $seminar_hasil->keterangan = "silahkan bertemu prodi, untuk memberikan berkas tugas akhir yang sudah ditanda tangani oleh dosen pembimbing. sebanyak 1 rangkap asli + 3 rangkap fotocopy.";
         $seminar_hasil->status = 'dikirim';
         $seminar = $seminar_hasil->save();

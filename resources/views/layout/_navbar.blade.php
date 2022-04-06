@@ -123,9 +123,16 @@
                                     <path d="M4 12v6a8 3 0 0 0 16 0v-6"></path>
                                 </svg>
                             </span>
-                            <span class="nav-link-title fw-semibold">
-                                Data
-                            </span>
+                            @role('superadmin|admin|prodi|mahasiswa')
+                                <span class="nav-link-title fw-semibold">
+                                    Data
+                                </span>
+                            @endrole
+                            @role('dosen')
+                                <span class="nav-link-title fw-semibold">
+                                    Bimbingan
+                                </span>
+                            @endrole
                         </a>
                         @role('superadmin|admin|prodi')
                             <div class="dropdown-menu">
@@ -149,12 +156,15 @@
 
                         @role('dosen')
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ route('mahasiswa-bimbingan.index') }}">
-                                    Mhs. Bimbingan
+                                <a class="dropdown-item" href="{{ route('proposal-mahasiswa.index') }}">
+                                    Proposa TA
                                 </a>
-                                {{-- <a class="dropdown-item" href="{{ route('proposal-mahasiswa.index') }}">
-                                    Proposal TA
-                                </a> --}}
+                                <a class="dropdown-item" href="{{ route('seminar-hasil-mahasiswa.index') }}">
+                                    Seminar Hasil
+                                </a>
+                                <a class="dropdown-item" href="{{ route('pendadaran-mahasiswa.index') }}">
+                                    Pendadaran
+                                </a>
                             </div>
                         @endrole
 
@@ -189,7 +199,7 @@
                                 </svg>
                             </span>
                             <span class="nav-link-title fw-semibold">
-                                Status Mhs
+                                Mhs. Lulus
                             </span>
                         </a>
                     </li>
@@ -212,6 +222,14 @@
                                 Jdl. Skripsi
                             </span>
                         </a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <form action="{{ route('logout') }}" method="post" class="p-0 m-0">
+                            @csrf
+                            <button type="submit" class="btn bg-danger btn-logout border-0 px-3 py-1">
+                                <span class="text-white small">Logout</span>
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </div>

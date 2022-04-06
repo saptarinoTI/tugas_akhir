@@ -8,10 +8,12 @@ use App\Http\Controllers\Admin\DataSeminarHasilController;
 use App\Http\Controllers\Admin\MahasiswaAPIController;
 use App\Http\Controllers\Admin\UserLoginController;
 use App\Http\Controllers\Dosen\MahasiswaBimbinganController;
+use App\Http\Controllers\Dosen\PendadaranController as DosenPendadaranController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Mahasiswa\DataController;
 use App\Http\Controllers\Mahasiswa\ProposalTAController;
 use App\Http\Controllers\Dosen\ProposalTAMahasiswaController;
+use App\Http\Controllers\Dosen\SeminarHasilController as DosenSeminarHasilController;
 use App\Http\Controllers\Mahasiswa\PendadaranController;
 use App\Http\Controllers\Mahasiswa\SeminarHasilController;
 use App\Http\Controllers\SkripsiController;
@@ -115,6 +117,12 @@ Route::middleware(['auth', 'verified', 'role:dosen|superadmin'])->group(function
     /* Proposal TA */
     Route::get('proposal-mahasiswa/get', [ProposalTAMahasiswaController::class, 'getData'])->name('proposal-mahasiswa.get');
     Route::resource('proposal-mahasiswa', ProposalTAMahasiswaController::class);
+    /* Seminar Hasil */
+    Route::get('seminar-hasil-mahasiswa/get', [DosenSeminarHasilController::class, 'getData'])->name('seminar-hasil-mahasiswa.get');
+    Route::resource('seminar-hasil-mahasiswa', DosenSeminarHasilController::class);
+    /* Pendadaran */
+    Route::get('pendadaran-mahasiswa/get', [DosenPendadaranController::class, 'getData'])->name('pendadaran-mahasiswa.get');
+    Route::resource('pendadaran-mahasiswa', DosenPendadaranController::class);
     /* End Data */
 
     /* Filter Dashboard Dosen */

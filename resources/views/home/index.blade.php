@@ -283,138 +283,252 @@
     @endrole
 
     @role('dosen')
-        <div class="row row-deck row-cards mb-3">
+        {{-- <div class="row row-deck row-cards mb-3">
             <div class="col-sm-6 col-lg-4">
                 <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div class="fw-semibold text-muted">Proposal Tugas Akhir</div>
-                            <div class="ms-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-minus"
-                                    width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
-                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
-                                    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
-                                    </path>
-                                    <line x1="9" y1="14" x2="15" y2="14"></line>
-                                </svg>
+                    <a href="{{ route('proposal-mahasiswa.index') }}" class="text-decoration-none">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="fw-semibold text-muted">Proposal Tugas Akhir</div>
+                                <div class="ms-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-minus"
+                                        width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                        <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
+                                        </path>
+                                        <line x1="9" y1="14" x2="15" y2="14"></line>
+                                    </svg>
+                                </div>
                             </div>
+                            <h2 class="fw-bold text-muted p-0 m-0">{{ $proposalProgres->count() }}</h2>
+                            <div class="text-muted">Mahasiswa</div>
                         </div>
-                        <h2 class="fw-bold text-muted p-0 m-0">{{ $proposalProgres->count() }}</h2>
-                        <div class="text-muted">Mahasiswa</div>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="col-sm-6 col-lg-4">
                 <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div class="fw-semibold text-muted">Seminar Hasil</div>
-                            <div class="ms-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-description"
-                                    width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
-                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
-                                    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
-                                    </path>
-                                    <path d="M9 17h6"></path>
-                                    <path d="M9 13h6"></path>
-                                </svg>
+                    <a href="{{ route('seminar-hasil-mahasiswa.index') }}" class="text-decoration-none">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="fw-semibold text-muted">Seminar Hasil</div>
+                                <div class="ms-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="icon icon-tabler icon-tabler-file-description" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                        <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
+                                        </path>
+                                        <path d="M9 17h6"></path>
+                                        <path d="M9 13h6"></path>
+                                    </svg>
+                                </div>
                             </div>
+                            <h2 class="fw-bold text-muted p-0 m-0">{{ $semhasProgres->count() }}</h2>
+                            <div class="text-muted">Mahasiswa</div>
                         </div>
-                        <h2 class="fw-bold text-muted p-0 m-0">{{ $semhasProgres->count() }}</h2>
-                        <div class="text-muted">Mahasiswa</div>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="col-sm-6 col-lg-4">
                 <div class="card">
+                    <a href="{{ route('pendadaran-mahasiswa.index') }}" class="text-decoration-none">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="fw-semibold text-muted">Pendadaran</div>
+                                <div class="ms-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-text"
+                                        width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                        <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
+                                        </path>
+                                        <line x1="9" y1="9" x2="10" y2="9"></line>
+                                        <line x1="9" y1="13" x2="15" y2="13"></line>
+                                        <line x1="9" y1="17" x2="15" y2="17"></line>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h2 class="fw-bold text-muted p-0 m-0">{{ $pendadaranProgres->count() }}</h2>
+                            <div class="text-muted">Mahasiswa</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div> --}}
+
+
+        <div class="row">
+            <!-- Proposal TA -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card">
                     <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div class="fw-semibold text-muted">Pendadaran</div>
-                            <div class="ms-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-text"
-                                    width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
-                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
-                                    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
-                                    </path>
-                                    <line x1="9" y1="9" x2="10" y2="9"></line>
-                                    <line x1="9" y1="13" x2="15" y2="13"></line>
-                                    <line x1="9" y1="17" x2="15" y2="17"></line>
-                                </svg>
+                        <a href="{{ route('proposal-mahasiswa.index') }}" class="text-decoration-none">
+                            <div class="d-flex align-items-center">
+                                <div class="fw-semibold text-dark">Proposal Tugas Akhir</div>
+                                <div class="ms-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-minus"
+                                        width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                        <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
+                                        </path>
+                                        <line x1="9" y1="14" x2="15" y2="14"></line>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h2 class="fw-bold text-dark p-0 m-0">{{ $proposalProgres->count() }}</h2>
+                            <div class="text-dark">Mahasiswa</div>
+                        </a>
+                        {{-- </div> --}}
+                        <div class="accordion mt-3" id="accordion-proposal-ta">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading-1">
+                                    <button class="accordion-button " type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse-proposal-ta" aria-expanded="true">
+                                        Mahasiswa Proposal Tugas Akhir
+                                    </button>
+                                </h2>
+                                <div id="collapse-proposal-ta" class="accordion-collapse collapse show"
+                                    data-bs-parent="#accordion-proposal-ta">
+                                    <div class="accordion-body pt-0">
+                                        @foreach ($proposalProgres->take(5) as $item)
+                                            <div class="list-group list-group-flush list-group-hoverable">
+                                                <div class="list-group-item">
+                                                    <div class="row align-items-center">
+                                                        <div class="col text-truncate">
+                                                            <a href="#"
+                                                                class="text-decoration-none text-reset d-block">{{ ucwords($item->mahasiswa->nama) }}</a>
+                                                        </div>
+                                                        @php
+                                                            $now = \Carbon\Carbon::parse();
+                                                            $tgl = \Carbon\Carbon::parse($item->tgl_acc);
+                                                            $result = $tgl->diffInDays($now);
+                                                            // return ' <sup> + </sup> ' . $result . ' hari';
+                                                            echo '<div class="col-auto"><sup> + </sup> ' . $result . ' hari</div>';
+                                                            if ($result >= 60) {
+                                                                echo '<div class="col-auto"><span class="badge bg-red"></span></div>';
+                                                            } elseif ($result >= 30) {
+                                                                echo '<div class="col-auto"><span class="badge bg-yellow"></span></div>';
+                                                            } elseif ($result <= 29) {
+                                                                echo '<div class="col-auto"><span class="badge bg-green"></span></div>';
+                                                            }
+                                                        @endphp
+                                                    </div>
+                                                    <hr class="p-0 mt-3 mb-0" />
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <h2 class="fw-bold text-muted p-0 m-0">{{ $pendadaranProgres->count() }}</h2>
-                        <div class="text-muted">Mahasiswa</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Seminar Hasi -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{{ route('seminar-hasil-mahasiswa.index') }}" class="text-decoration-none">
+                            <div class="d-flex align-items-center">
+                                <div class="fw-semibold text-dark">Seminar Hasil</div>
+                                <div class="ms-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="icon icon-tabler icon-tabler-file-description" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                        <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
+                                        </path>
+                                        <path d="M9 17h6"></path>
+                                        <path d="M9 13h6"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h2 class="fw-bold text-dark p-0 m-0">{{ $semhasProgres->count() }}</h2>
+                            <div class="text-dark">Mahasiswa</div>
+                        </a>
+                        {{-- </div> --}}
+                        <div class="accordion mt-3" id="accordion-seminar-hasil">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading-1">
+                                    <button class="accordion-button " type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse-seminar-hasil" aria-expanded="true">
+                                        Mahasiswa Seminar Hasil
+                                    </button>
+                                </h2>
+                                <div id="collapse-seminar-hasil" class="accordion-collapse collapse show"
+                                    data-bs-parent="#accordion-seminar-hasil">
+                                    <div class="accordion-body pt-0">
+                                        @foreach ($semhasProgres->take(5) as $item)
+                                            <div class="list-group list-group-flush list-group-hoverable">
+                                                <div class="list-group-item">
+                                                    <div class="row align-items-center">
+                                                        <div class="col text-truncate">
+                                                            <span
+                                                                class="text-decoration-none text-reset d-block">{{ ucwords($item->mahasiswa->nama) }}</span>
+                                                        </div>
+                                                        @php
+                                                            $now = \Carbon\Carbon::parse();
+                                                            $tgl = \Carbon\Carbon::parse($item->tgl_acc);
+                                                            $result = $tgl->diffInDays($now);
+                                                            // return ' <sup> + </sup> ' . $result . ' hari';
+                                                            echo '<div class="col-auto"><sup> + </sup> ' . $result . ' hari</div>';
+                                                            if ($result >= 60) {
+                                                                echo '<div class="col-auto"><span class="badge bg-red"></span></div>';
+                                                            } elseif ($result >= 30) {
+                                                                echo '<div class="col-auto"><span class="badge bg-yellow"></span></div>';
+                                                            } elseif ($result <= 29) {
+                                                                echo '<div class="col-auto"><span class="badge bg-green"></span></div>';
+                                                            }
+                                                        @endphp
+                                                    </div>
+                                                    <hr class="p-0 mt-3 mb-0" />
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pendadaran -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{{ route('pendadaran-mahasiswa.index') }}" class="text-decoration-none">
+                            <div class="d-flex align-items-center">
+                                <div class="fw-semibold text-dark">Pendadaran</div>
+                                <div class="ms-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-minus"
+                                        width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                        <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
+                                        </path>
+                                        <line x1="9" y1="14" x2="15" y2="14"></line>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h2 class="fw-bold text-dark p-0 m-0">{{ $pendadaranProgres->count() }}</h2>
+                            <div class="text-dark">Mahasiswa</div>
+                        </a>
+                        {{-- </div> --}}
                     </div>
                 </div>
             </div>
         </div>
-
-
-        <!-- <div class="row row-deck row-cards">
-                                    <div class="col-md-6 col-lg-4">
-                                        <div class="card">
-                                               <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="fw-semibold text-dark">Proposal Tugas Akhir</div>
-                                                    <div class="ms-auto">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-minus"
-                                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
-                                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                            <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
-                                                            <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
-                                                            </path>
-                                                            <line x1="9" y1="14" x2="15" y2="14"></line>
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                                <h2 class="fw-bold text-dark p-0 m-0">{{ $proposalProgres->count() }}</h2>
-                                                <div class="text-dark">Mahasiswa</div>
-                                                {{-- </div> --}}
-                                                <div class="accordion mt-3" id="accordion-example">
-                                                    <div class="accordion-item">
-                                                        <h2 class="accordion-header" id="heading-1">
-                                                            <button class="accordion-button " type="button" data-bs-toggle="collapse"
-                                                                data-bs-target="#collapse-1" aria-expanded="true">
-                                                                Mahasiswa Proposal Tugas Akhir
-                                                            </button>
-                                                        </h2>
-                                                        <div id="collapse-1" class="accordion-collapse collapse show"
-                                                            data-bs-parent="#accordion-example">
-                                                            <div class="accordion-body pt-0">
-                                                                @foreach ($proposalProgres as $item)
-        <div class="list-group list-group-flush list-group-hoverable">
-                                                                        <div class="list-group-item">
-                                                                            <div class="row align-items-center">
-                                                                                <div class="col-auto"><span class="badge bg-red"></span></div>
-                                                                                <div class="col text-truncate">
-                                                                                    <a href="#" class="text-reset d-block">Paweł Kuna</a>
-                                                                                    <div class="d-block text-muted text-truncate mt-n1">Change
-                                                                                        deprecated
-                                                                                        html
-                                                                                        tags to text decoration classes (#29604)</div>
-                                                                                </div>
-                                                                                <div class="col-auto">
-                                                                                    fjkdsnjfknsdjk
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-        @endforeach
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
     @endrole
 
     @role('mahasiswa')

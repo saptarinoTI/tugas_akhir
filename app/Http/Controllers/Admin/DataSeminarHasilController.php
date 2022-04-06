@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ProposalTA;
 use App\Models\SeminarHasil;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
@@ -83,7 +84,7 @@ class DataSeminarHasilController extends Controller
         $seminar_hasil->status = strtolower(htmlspecialchars($request->status));
         if ($seminar_hasil->status == 'diterima') {
             $seminar_hasil->keterangan = 'pendaftarakan telah diterima, silahkan menunggu untuk jadwal sidang seminar hasil.';
-            $seminar_hasil->tgl_acc = null;
+            $seminar_hasil->tgl_acc = Carbon::parse();
             $seminar_hasil->proposal->status = 'selesai';
         } else {
             $seminar_hasil->keterangan = strtolower(htmlspecialchars($request->keterangan));

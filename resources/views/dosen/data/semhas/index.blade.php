@@ -1,6 +1,7 @@
 @extends('layout.app')
-@section('main-title', 'Mahasiswa Bimbingan Pro. Tugas Akhir')
+@section('main-title', 'Data Proposal Tugas Akhir')
 @section('main-page')
+    <p>Mahasiswa Proposal Tugas Akhir Sesuai dengan Pemberian Prodi.</p>
     <div class="row row-deck row-cards">
         <div class="col-12">
             <div class="card">
@@ -39,7 +40,7 @@
                     order: [
                         [0, "asc"]
                     ],
-                    ajax: "{{ route('proposal-mahasiswa.get') }}",
+                    ajax: "{{ route('seminar-hasil-mahasiswa.get') }}",
                     columns: [{
                         data: 'nim',
                         name: 'nim'

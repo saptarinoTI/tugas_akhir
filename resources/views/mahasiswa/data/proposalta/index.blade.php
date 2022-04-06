@@ -50,7 +50,7 @@
                                             <span class="small"><i class="ti ti-eye"></i></span>
                                         </a>
                                     </td>
-                                @elseif ($proposal->status == 'diproses' or $proposal->status == 'diterima' or $proposal->status == 'diperiksa')
+                                @elseif ($proposal->status == 'selesai' or $proposal->status == 'diterima')
                                     <td>
                                         <a href="#" class="btn btn-dark px-2 border-0" data-bs-toggle="modal"
                                             data-bs-target="#modal-detail"

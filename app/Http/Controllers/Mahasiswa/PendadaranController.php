@@ -31,8 +31,9 @@ class PendadaranController extends Controller
             return redirect()->route('mahasiswa.index');
         }
         if ($seminar) {
-            $statusSeminar = $seminar->status == 'selesai';
-            if ($statusSeminar) {
+            $statusSeminarSelesai = $seminar->status == 'selesai';
+            $statusSeminar = $seminar->status == 'diterima';
+            if ($statusSeminar || $statusSeminarSelesai) {
                 $pendadaran = Pendadaran::where('proposalta_id', '=', $proposal->id)->first();
                 return view('mahasiswa.data.pendadaran.index', compact('seminar', 'pendadaran', 'proposal'));
             } else {
@@ -111,7 +112,7 @@ class PendadaranController extends Controller
         $file->ktp = $this->upload($request, 'ktp', 'pendadaran/ktp', $nim);
         $file->akte_kelahiran = $this->upload($request, 'akte_kelahiran', 'pendadaran/akte_kelahiran', $nim);
         $file->foto = $this->upload($request, 'foto', 'pendadaran/foto', $nim);
-        $file->judul_ta = $request->judul_ta;
+        $file->judul_ta = ucwords(htmlspecialchars($request->judul_ta));
         $file->status = 'dikirim';
         $file->keterangan = 'silahkan bertemu bagian prodi teknik informatika untuk memberikan berkas tugas akhir yang sudah ditanda tangani oleh dosen pembimbing. sebanyak 4 rangkap (1 rangkap asli).';
 

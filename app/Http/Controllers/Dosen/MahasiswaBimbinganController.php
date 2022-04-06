@@ -45,9 +45,7 @@ class MahasiswaBimbinganController extends Controller
                 return date('Y', strtotime($proposal->tgl_acc));
             })
             ->addColumn('status', function ($proposal) {
-                if ($proposal->status != 'diterima') {
-                    return '<span class="badge badge-success">' . ucwords($proposal->status) . '</span>';
-                } else {
+                if ($proposal->status != 'dikirim') {
                     if ($proposal->pendadaran === NULL) {
                         return 'Proses Pengerjaan Skripsi';
                     } else {
@@ -67,6 +65,8 @@ class MahasiswaBimbinganController extends Controller
                             return 'Pengerjaan Skripsi';
                         }
                     }
+                } else if ($proposal->status != 'selesai') {
+                    return '<span class="badge badge-success">' . ucwords($proposal->status) . '</span>';
                 }
             })
             ->rawColumns(['nim', 'nama', 'judul', 'pemb', 'tgl', 'status'])
