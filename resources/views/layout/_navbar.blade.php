@@ -39,7 +39,7 @@
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <a href="{{ route('password-change.get') }}" class="dropdown-item small fw-semibold">Change
                         Password</a>
-                    <div class="dropdown-divider"></div>
+                    {{-- <div class="dropdown-divider"></div>
                     <div class="dropdown-item p-0 m-0">
                         <form action="{{ route('logout') }}" method="post" class="p-0 m-0">
                             @csrf
@@ -47,7 +47,7 @@
                                 <span class="text-danger fw-bold bg-transparent small">Logout</span>
                             </button>
                         </form>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
