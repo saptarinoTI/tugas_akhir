@@ -19,6 +19,6 @@ class Dosen extends Model
     ];
     public function proposal()
     {
-        return $this->hasOne(ProposalTA::class);
+        return $this->hasMany(ProposalTA::class);
     }
 }

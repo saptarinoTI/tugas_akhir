@@ -99,9 +99,28 @@
                   <label class="form-label">Dosen Pembimbing Utama</label>
                   <select class="form-select" placeholder="Select a date" name="dosen_id_satu">
                       <option value="">Pilih salah satu dosen pembimbing utama ....</option>
-                      @foreach ($dosens as $dosen)
+                      @php
+                          foreach ($dosens as $item):
+                              $proposal = App\Models\ProposalTA::where([['dosen_id_satu', '=', $item->id], ['status', '=', 'diterima']])
+                                  ->orWhere([['dosen_id_dua', '=', $item->id], ['status', '=', 'diterima']])
+                                  ->count();
+                              $seminar = App\Models\SeminarHasil::where('status', 'diterima')
+                                  ->whereHas('proposal', function ($query) use ($item) {
+                                      $query->where('dosen_id_satu', $item->id)->orWhere('dosen_id_dua', $item->id);
+                                  })
+                                  ->count();
+                              $pendadaran = App\Models\Pendadaran::where('status', 'diterima')
+                                  ->whereHas('proposal', function ($query) use ($item) {
+                                      $query->where('dosen_id_satu', $item->id)->orWhere('dosen_id_dua', $item->id);
+                                  })
+                                  ->count();
+                              $result = $proposal + $seminar + $pendadaran;
+                              echo '<option value="' . $item->id . '">' . ucwords($item->nama) . ' | Mhs. Bimbingan : ' . $result . '</option>';
+                          endforeach;
+                      @endphp
+                      {{-- @foreach ($dosens as $dosen)
                           <option value="{{ $dosen->id }}">{{ ucwords($dosen->nama) }}</option>
-                      @endforeach
+                      @endforeach --}}
                   </select>
                   @error('dosen_id_satu')
                       <div class="invalid-feedback">
@@ -115,9 +134,28 @@
                   <label class="form-label">Dosen Pembimbing Pendamping</label>
                   <select class="form-select" placeholder="Select a date" name="dosen_id_dua">
                       <option value="">Pilih salah satu dosen pembimbing pendamping ....</option>
-                      @foreach ($dosens as $dosen)
+                      @php
+                          foreach ($dosens as $item):
+                              $proposal = App\Models\ProposalTA::where([['dosen_id_satu', '=', $item->id], ['status', '=', 'diterima']])
+                                  ->orWhere([['dosen_id_dua', '=', $item->id], ['status', '=', 'diterima']])
+                                  ->count();
+                              $seminar = App\Models\SeminarHasil::where('status', 'diterima')
+                                  ->whereHas('proposal', function ($query) use ($item) {
+                                      $query->where('dosen_id_satu', $item->id)->orWhere('dosen_id_dua', $item->id);
+                                  })
+                                  ->count();
+                              $pendadaran = App\Models\Pendadaran::where('status', 'diterima')
+                                  ->whereHas('proposal', function ($query) use ($item) {
+                                      $query->where('dosen_id_satu', $item->id)->orWhere('dosen_id_dua', $item->id);
+                                  })
+                                  ->count();
+                              $result = $proposal + $seminar + $pendadaran;
+                              echo '<option value="' . $item->id . '">' . ucwords($item->nama) . ' | Mhs. Bimbingan : ' . $result . '</option>';
+                          endforeach;
+                      @endphp
+                      {{-- @foreach ($dosens as $dosen)
                           <option value="{{ $dosen->id }}">{{ ucwords($dosen->nama) }}</option>
-                      @endforeach
+                      @endforeach --}}
                   </select>
                   @error('dosen_id_dua')
                       <div class="invalid-feedback">
