@@ -1,66 +1,62 @@
-<!doctype html>
-<!--
-* Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
-* @version 1.0.0-beta5
-* @link https://tabler.io
-* Copyright 2018-2022 The Tabler Authors
-* Copyright 2018-2022 codecalm.net Paweł Kuna
-* Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
--->
-<html lang="en">
-
-<head>
-    @include('layout._header')
-</head>
-
-<body class="d-flex flex-column">
-    <div class="page page-center">
-        <div class="container-tight py-4">
-            <div class="text-center mb-4">
-                <a href="." class="navbar-brand brand-login navbar-brand-autodark"><img
-                        src="{{ asset('img/logo/logo-dark.png') }}" height="53" alt="STITEK Bontang"></a>
-            </div>
-            @if (session('status') == 'verification-link-sent')
-                <div class="mb-4 big-small text-success alert alert-success">
-                    {{ __('Tautan verifikasi telah dikirim ke email yang Anda berikan saat pendaftaran.') }}
-                </div>
-            @endif
-            <form class="card card-md" action="{{ route('verification.send') }}" method="POST" autocomplete="off">
-                @csrf
+@extends('auth.auth')
+@section('main-content')
+<div class="container-xxl">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner">
+            <!-- Register -->
+            <div class="card">
                 <div class="card-body">
-                    <div class="mb-4 big-samll text-muted">
-                        {{ __('Pendaftaran email berhasil! Sebelum memulai, silahkan klik tombol verifikasi dibawah kemudian cek email anda untuk memverifikasi email.') }}
+                    <!-- Logo -->
+                    <a href="{{ route('login') }}">
+                        <div class="app-brand justify-content-center">
+                            <img src="{{ asset('assets/img/logo/logo-dark.png') }}" alt="Logo Stitek Bontang">
+                        </div>
+                    </a>
+                    <!-- /Logo -->
+
+                    @if (session('status') == 'verification-link-sent')
+                    <div class="mb-4 big-small text-success alert alert-success small">
+                        Tautan verifikasi telah dikirim ke email. Silahkan cek <span
+                            class="text-danger fw-bold">spam</span> jika pada pesan masuk tidak tersedia.
                     </div>
-                    <div class="form-footer">
-                        <div class="row">
-                            <div class="col-12 col-md-8">
-                                <button type="submit" class="btn btn-dark w-100"><span class="small">Verifikasi
-                                        Email</span>
-                                </button>
-                            </div>
-                            <div class="col-12 mt-2 mt-md-0 col-md-4">
-                                <a href="{{ route('register.getEmail') }}" class="btn btn-outline-dark w-100"><span
-                                        class="small">Rubah
-                                        Email</span>
-                                </a>
+                    @endif
+
+                    <p class="mb-4 small">Pendaftaran email berhasil! Sebelum memulai, silahkan klik tombol
+                        <span class="fw-bolder">Verifikasi</span> dibawah kemudian cek email anda untuk memverifikasi
+                        email.
+                    </p>
+
+                    <form id="formAuthentication" class="mb-3" action="{{ route('verification.send') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <button type="submit" class="btn btn-dark w-100"><span class="small">Verifikasi
+                                            Email</span>
+                                    </button>
+                                </div>
+                                <div class="col-12 mt-2 mt-md-0 col-md-6">
+                                    <a href="{{ route('register.getEmail') }}" class="btn btn-outline-dark w-100"><span
+                                            class="small">Rubah
+                                            Email</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
+                    </form>
+
+                    <div class="text-center">
+                        <form action="{{ route('logout') }}" method="post" class="p-0 m-0">
+                            @csrf
+                            <button type="submit" class="btn btn-logout btn-danger w-100 border-0">
+                                <span class="small">Keluar</span>
+                            </button>
+                        </form>
                     </div>
                 </div>
-            </form>
-            <div class="text-center text-muted mb-3 mt-0">
-                <form action="{{ route('logout') }}" method="post" class="p-0 m-0">
-                    @csrf
-                    <button type="submit" class="btn btn-logout border-0 px-5 py-1 mt-3">
-                        <span class="text-danger fw-semibold bg-transparent py-1">Keluar</span>
-                    </button>
-                </form>
             </div>
+            <!-- /Register -->
         </div>
     </div>
-
-    @include('sweetalert::alert')
-    @include('layout._footer')
-</body>
-
-</html>
+</div>
+@endsection

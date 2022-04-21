@@ -1,59 +1,52 @@
-<!doctype html>
-<!--
-* Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
-* @version 1.0.0-beta5
-* @link https://tabler.io
-* Copyright 2018-2022 The Tabler Authors
-* Copyright 2018-2022 codecalm.net Paweł Kuna
-* Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
--->
-<html lang="en">
-
-<head>
-    @include('layout._header')
-</head>
-
-<body class="d-flex flex-column">
-    <div class="page page-center">
-        <div class="container-tight py-4">
-            <div class="text-center mb-4">
-                <a href="." class="navbar-brand brand-login navbar-brand-autodark"><img
-                        src="{{ asset('img/logo/logo-dark.png') }}" height="53" alt="STITEK Bontang"></a>
-            </div>
-            <form class="card card-md" action="{{ route('register.postEmail') }}" method="POST" autocomplete="off">
-                @csrf
+@extends('auth.auth')
+@section('main-content')
+<div class="container-xxl">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner">
+            <!-- Register -->
+            <div class="card">
                 <div class="card-body">
-                    <div class="mb-4 big-small text-dark">
-                        {{ __('Ups email Anda tidak terdaftar. Silahkan daftarkan email yang benar, karena akan digunakan untuk proses verifikasi.') }}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                            placeholder="Masukkan email" required autocomplete="off" value="{{ old('email') }}" />
-                        @error('email')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="form-footer">
-                        <button type="submit" class="btn btn-dark w-100 btn-sm py-2">Daftar</button>
+                    <!-- Logo -->
+                    <a href="{{ route('login') }}">
+                        <div class="app-brand justify-content-center">
+                            <img src="{{ asset('assets/img/logo/logo-dark.png') }}" alt="Logo Stitek Bontang">
+                        </div>
+                    </a>
+                    <!-- /Logo -->
+                    <p class="mb-4 small">Ups email Anda tidak terdaftar. Silahkan daftarkan email yang benar, karena
+                        akan digunakan untuk proses verifikasi.</p>
+
+                    <form id="formAuthentication" class="mb-3" action="{{ route('register.postEmail') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input id="email" type="email" name="email"
+                                class="form-control @error('email') is-invalid @enderror"
+                                placeholder="Masukkan email anda" autofocus required autocomplete="off"
+                                value="{{ old('email') }}" />
+                            @error('email')
+                            <div class="invalid-feedback"> {{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <button class="btn btn-dark d-grid w-100 border-0" type="submit">
+                                <div class="small">Daftar Email</div>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="text-center">
+                        <form action="{{ route('logout') }}" method="post" class="p-0 m-0">
+                            @csrf
+                            <button type="submit" class="btn btn-logout btn-danger w-100 border-0">
+                                <span class="small">Keluar</span>
+                            </button>
+                        </form>
                     </div>
                 </div>
-            </form>
-            <div class="text-center text-muted mt-3">
-                <form action="{{ route('logout') }}" method="post" class="p-0 m-0">
-                    @csrf
-                    <button type="submit" class="btn btn-logout border-0 px-5 py-1">
-                        <span class="text-danger fw-semibold bg-transparent small py-1">Keluar</span>
-                    </button>
-                </form>
             </div>
+            <!-- /Register -->
         </div>
     </div>
-
-    @include('sweetalert::alert')
-    @include('layout._footer')
-</body>
-
-</html>
+</div>
+@endsection

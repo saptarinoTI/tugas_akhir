@@ -17,11 +17,11 @@
                         <div class="fw-bold small">{{ ucwords(auth()->user()->name) }} </div>
                         <div class="mt-1 medium text-muted">
                             {{ ucwords(
-                                Str::substr(
-                                    auth()->user()->getRoleNames(),
-                                    2,
-                                    -2,
-                                ),
+                            Str::substr(
+                            auth()->user()->getRoleNames(),
+                            2,
+                            -2,
+                            ),
                             ) }}
                         </div>
                     </div>
@@ -74,40 +74,40 @@
                         </a>
                     </li>
                     @role('superadmin|admin')
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
-                                data-bs-auto-close="outside" role="button" aria-expanded="false">
-                                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                    <!-- Download SVG icon from http://tabler-icons.io/i/package -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users"
-                                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <circle cx="9" cy="7" r="4"></circle>
-                                        <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                        <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
-                                    </svg>
-                                </span>
-                                <span class="nav-link-title fw-semibold">
-                                    Users
-                                </span>
-                            </a>
-                            <div class="dropdown-menu">
-                                <div class="dropdown-menu-columns">
-                                    <div class="dropdown-menu-column">
-                                        <a class="dropdown-item" href="{{ route('user-login.index') }}">
-                                            User Login
-                                        </a>
-                                        @role('superadmin')
-                                            <a class="dropdown-item" href="{{ route('mahasiswa-api.index') }}">
-                                                Mahasiswa API
-                                            </a>
-                                        @endrole
-                                    </div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                            data-bs-auto-close="outside" role="button" aria-expanded="false">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <!-- Download SVG icon from http://tabler-icons.io/i/package -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users"
+                                    width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                    <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
+                                </svg>
+                            </span>
+                            <span class="nav-link-title fw-semibold">
+                                Users
+                            </span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item" href="{{ route('user-login.index') }}">
+                                        User Login
+                                    </a>
+                                    @role('superadmin')
+                                    <a class="dropdown-item" href="{{ route('mahasiswa-api.index') }}">
+                                        Mahasiswa API
+                                    </a>
+                                    @endrole
                                 </div>
                             </div>
-                        </li>
+                        </div>
+                    </li>
                     @endrole
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown"
@@ -124,65 +124,65 @@
                                 </svg>
                             </span>
                             @role('superadmin|admin|prodi|mahasiswa')
-                                <span class="nav-link-title fw-semibold">
-                                    Data
-                                </span>
+                            <span class="nav-link-title fw-semibold">
+                                Data
+                            </span>
                             @endrole
                             @role('dosen')
-                                <span class="nav-link-title fw-semibold">
-                                    Bimbingan
-                                </span>
+                            <span class="nav-link-title fw-semibold">
+                                Bimbingan
+                            </span>
                             @endrole
                         </a>
                         @role('superadmin|admin|prodi')
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ route('data-dosen.index') }}">
-                                    Data Dosen
-                                </a>
-                                <a class="dropdown-item" href="{{ route('data-mahasiswa.index') }}">
-                                    Data Mahasiswa
-                                </a>
-                                <a class="dropdown-item" href="{{ route('data-proposal.index') }}">
-                                    Proposal TA
-                                </a>
-                                <a class="dropdown-item" href="{{ route('data-seminar-hasil.index') }}">
-                                    Seminar Hasil
-                                </a>
-                                <a class="dropdown-item" href="{{ route('data-pendadaran.index') }}">
-                                    Pendadaran
-                                </a>
-                            </div>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ route('data-dosen.index') }}">
+                                Data Dosen
+                            </a>
+                            <a class="dropdown-item" href="{{ route('data-mahasiswa.index') }}">
+                                Data Mahasiswa
+                            </a>
+                            <a class="dropdown-item" href="{{ route('data-proposal.index') }}">
+                                Proposal TA
+                            </a>
+                            <a class="dropdown-item" href="{{ route('data-seminar-hasil.index') }}">
+                                Seminar Hasil
+                            </a>
+                            <a class="dropdown-item" href="{{ route('data-pendadaran.index') }}">
+                                Pendadaran
+                            </a>
+                        </div>
                         @endrole
 
                         @role('dosen')
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ route('proposal-mahasiswa.index') }}">
-                                    Proposa TA
-                                </a>
-                                <a class="dropdown-item" href="{{ route('seminar-hasil-mahasiswa.index') }}">
-                                    Seminar Hasil
-                                </a>
-                                <a class="dropdown-item" href="{{ route('pendadaran-mahasiswa.index') }}">
-                                    Pendadaran
-                                </a>
-                            </div>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ route('proposal-mahasiswa.index') }}">
+                                Proposa TA
+                            </a>
+                            <a class="dropdown-item" href="{{ route('seminar-hasil-mahasiswa.index') }}">
+                                Seminar Hasil
+                            </a>
+                            <a class="dropdown-item" href="{{ route('pendadaran-mahasiswa.index') }}">
+                                Pendadaran
+                            </a>
+                        </div>
                         @endrole
 
                         @role('mahasiswa')
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ route('mahasiswa.index') }}">
-                                    Data Mahasiswa
-                                </a>
-                                <a class="dropdown-item" href="{{ route('proposal.index') }}">
-                                    Proposal TA
-                                </a>
-                                <a class="dropdown-item" href="{{ route('seminar-hasil.index') }}">
-                                    Seminar Hasil
-                                </a>
-                                <a class="dropdown-item" href="{{ route('pendadaran.index') }}">
-                                    Pendadaran
-                                </a>
-                            </div>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ route('mahasiswa.index') }}">
+                                Data Mahasiswa
+                            </a>
+                            <a class="dropdown-item" href="{{ route('proposal.index') }}">
+                                Proposal TA
+                            </a>
+                            <a class="dropdown-item" href="{{ route('seminar-hasil.index') }}">
+                                Seminar Hasil
+                            </a>
+                            <a class="dropdown-item" href="{{ route('pendadaran.index') }}">
+                                Pendadaran
+                            </a>
+                        </div>
                         @endrole
                     </li>
                     <li class="nav-item">

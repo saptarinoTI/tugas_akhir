@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Http\Client\ConnectionException;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
-use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
 
 class MahasiswaAPIController extends Controller
@@ -15,27 +13,6 @@ class MahasiswaAPIController extends Controller
     public function index()
     {
         return view('admin.users.mahasiswaapi.index');
-    }
-
-    public function store()
-    {
-        $response = Http::get('http://api.siakad.stitek.ac.id/siakadzone/mahasiswa');
-        $responseData = $response->json();
-        $datas = $responseData['data'];
-
-        foreach ($datas as $data) {
-            $user = User::where('id', '=', $data['mhs_no'])->first();
-            if (!$user) {
-                $mahasiswa = new User;
-                $mahasiswa->id = $data['mhs_no'];
-                $mahasiswa->name = ucwords(strtolower($data['mhs_nama']));
-                $mahasiswa->password = Hash::make('12345678');
-                $mahasiswa->save();
-                $mahasiswa->assignRole('mahasiswa');
-            }
-        }
-        Alert::success('Berhasil', 'Data login mahasiswa berhasil ditambahkan.');
-        return redirect()->route('mahasiswa-api.index');
     }
 
     public function getData()
@@ -63,6 +40,7 @@ class MahasiswaAPIController extends Controller
                 ->rawColumns(['mhs_nama', 'ttl'])
                 ->make(true);
         } catch (ConnectionException $e) {
+            return $e;
         }
     }
 }

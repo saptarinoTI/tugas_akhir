@@ -1,71 +1,57 @@
-<!doctype html>
-<!--
-* Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
-* @version 1.0.0-beta5
-* @link https://tabler.io
-* Copyright 2018-2022 The Tabler Authors
-* Copyright 2018-2022 codecalm.net Paweł Kuna
-* Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
--->
-<html lang="en">
-
-<head>
-    @include('layout._header')
-</head>
-
-<body class="d-flex flex-column">
-    <div class="page page-center">
-        <div class="container-tight">
-            <form class="card card-md" action="{{ route('login') }}" method="POST" autocomplete="off">
-                @csrf
-                <div class="card-body">
-                    <div class="text-center mb-4">
-                        <a href="." class="navbar-brand brand-login navbar-brand-autodark"><img
-                                src="{{ asset('img/logo/logo-dark.png') }}" height="50" alt="STITEK Bontang"></a>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label text-muted">Username</label>
-                        <input type="text" class="form-control @error('id') is-invalid @enderror" name="id"
-                            placeholder="Enter username" required autocomplete="off" value="{{ old('id') }}" />
-                        @error('id')
-                            <div class="invalid-feedback">
-                                Username atau password salah!
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="mb-2">
-                        <label class="form-label text-muted">
-                            Password
-                            <span class="form-label-description">
-                                <a href="{{ route('password.request') }}" class="text-muted">I forgot
-                                    password</a>
-                            </span>
-                        </label>
-                        <div class="input-group input-group-flat">
-                            <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                name="password" placeholder="Password" autocomplete="off">
-                        </div>
-                        @error('password')
-                            <div class="invalid-feedback">
-                                Username atau password salah!
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="form-footer mb-3">
-                        <button type="submit" class="btn btn-dark w-100">Sign in</button>
-                    </div>
-                </div>
-            </form>
-            <div class="text-center text-muted mt-3 medium">
-                <a href="{{ route('skripsi.index') }}" tabindex="-1" class="fw-semibold text-dark">Daftar
-                    Judul
-                    Skripsi</a> Mahasiswa STITEK Bontang
+@extends('auth.auth')
+@section('main-content')
+<div class="container-xxl">
+  <div class="authentication-wrapper authentication-basic container-p-y">
+    <div class="authentication-inner">
+      <!-- Register -->
+      <div class="card">
+        <div class="card-body">
+          <!-- Logo -->
+          <a href="{{ route('login') }}">
+            <div class="app-brand justify-content-center">
+              <img src="{{ asset('assets/img/logo/logo-dark.png') }}" alt="Logo Stitek Bontang">
             </div>
-        </div>
-    </div>
-    <!-- Libs JS -->
-    <!-- Tabler Core -->
-    @include('layout._footer')
-</body>
+          </a>
+          <!-- /Logo -->
+          <h5 class="mb-2">Selamat Datang di SIMTA</h5>
+          <p class="mb-4 small">Silahkan Masuk Ke Akun Anda Untuk Melakukan Aktifitas Tugas Akhir</p>
 
-</html>
+          <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+              <label for="id" class="form-label">Username</label>
+              <input id="id" type="text" name="id" class="form-control @error('id') is-invalid @enderror" placeholder="Masukkan username atau nim" autofocus required autocomplete="off" value="{{ old('id') }}" />
+              @error('id')
+              <div class="invalid-feedback"> Username atau password salah! </div>
+              @enderror
+            </div>
+            <div class="mb-3 form-password-toggle">
+              <div class="d-flex justify-content-between">
+                <label class="form-label" for="password">Password</label>
+                <a href={{ route('password.request') }}>
+                  <small>Forgot Password?</small>
+                </a>
+              </div>
+              <div class="input-group input-group-merge">
+                <input type="password" id="password" class="form-control @error('password')is-invalid @enderror" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <button class="btn btn-dark d-grid w-100" type="submit">Sign in</button>
+            </div>
+          </form>
+
+          <p class="text-center small">
+            <a href="{{ route('skripsi.index') }}" class="fw-semibold">
+              <span>Daftar Judul Skripsi</span>
+            </a>
+            <span class="fw-light">Mahasiswa Tugas Akhir Bontang</span>
+          </p>
+        </div>
+      </div>
+      <!-- /Register -->
+    </div>
+  </div>
+</div>
+@endsection

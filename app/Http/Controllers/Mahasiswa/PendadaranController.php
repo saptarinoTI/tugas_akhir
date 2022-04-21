@@ -27,8 +27,8 @@ class PendadaranController extends Controller
         $proposal = ProposalTA::where('mahasiswa_nim', '=', $nim)->first();
         $seminar = SeminarHasil::where('mahasiswa_nim', '=', $nim)->first();
         if ($mahasiswa == null) {
-            toast('Lengkapi data diri terlebih dahulu!', 'warning', 'top-right');
-            return redirect()->route('mahasiswa.index');
+            Alert::warning('Lengkapi data diri terlebih dahulu!');
+            return redirect()->route('data-diri.index');
         }
         if ($seminar) {
             $statusSeminarSelesai = $seminar->status == 'selesai';
@@ -37,12 +37,12 @@ class PendadaranController extends Controller
                 $pendadaran = Pendadaran::where('proposalta_id', '=', $proposal->id)->first();
                 return view('mahasiswa.data.pendadaran.index', compact('seminar', 'pendadaran', 'proposal'));
             } else {
-                toast('Status Seminar Hasil belum selesai, silahkan selesaikan terlebih dahulu!', 'warning', 'top-right');
-                return redirect()->route('seminar-hasil.index');
+                Alert::warning('Status Seminar Hasil belum selesai, silahkan selesaikan terlebih dahulu!');
+                return redirect()->route('seminar.index');
             }
         } else {
-            toast('Selesaikan Seminar Hasil terlebih dahulu!', 'warning', 'top-right');
-            return redirect()->route('seminar-hasil.index');
+            Alert::warning('Selesaikan Seminar Hasil terlebih dahulu!');
+            return redirect()->route('seminar.index');
         }
     }
 
@@ -112,9 +112,9 @@ class PendadaranController extends Controller
         $file->ktp = $this->upload($request, 'ktp', 'pendadaran/ktp', $nim);
         $file->akte_kelahiran = $this->upload($request, 'akte_kelahiran', 'pendadaran/akte_kelahiran', $nim);
         $file->foto = $this->upload($request, 'foto', 'pendadaran/foto', $nim);
-        $file->judul_ta = ucwords(htmlspecialchars($request->judul_ta));
+        $file->judul_ta = strtolower(htmlspecialchars($request->judul_ta));
         $file->status = 'dikirim';
-        $file->keterangan = 'silahkan bertemu bagian prodi teknik informatika untuk memberikan berkas tugas akhir yang sudah ditanda tangani oleh dosen pembimbing. sebanyak 4 rangkap (1 rangkap asli).';
+        $file->keterangan = 'silahkan bertemu bagian prodi teknik informatika untuk memberikan berkas tugas akhir yang sudah disetujui oleh dosen pembimbing. sebanyak 4 rangkap (1 rangkap asli).';
 
         $file->save();
         Alert::success('Berhasil', 'Data pendaftaran pendadaran berhasil ditambahkan!');
@@ -130,7 +130,7 @@ class PendadaranController extends Controller
     public function show($id)
     {
         $pendadaran = Pendadaran::findOrFail($id);
-        return view('mahasiswa.data.pendadaran.show', compact('pendadaran'));
+        return view('show.pendadaran', compact('pendadaran'));
     }
 
     /**
@@ -154,7 +154,6 @@ class PendadaranController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $messages = [
             'required' => 'Silahkan upload file terlebih dahulu!',
             'mimetypes' => 'Format file yang diperbolehkan adalah .pdf,',
@@ -258,16 +257,5 @@ class PendadaranController extends Controller
 
         Alert::success('Berhasil', 'Data pendaftaran pendadaran berhasil diperbaharui!');
         return redirect()->route('pendadaran.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
