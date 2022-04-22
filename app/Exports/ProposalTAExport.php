@@ -19,25 +19,15 @@ class ProposalTAExport implements FromCollection, WithHeadings, WithMapping, Wit
     public function registerEvents(): array
     {
         return [
-            // AfterSheet::class => function (AfterSheet $event) {
-            //     $event->sheet->getStyle('A:E')->applyFromArray([
-            //         'borders' => [
-            //             'allBorders' => [
-            //                 'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-            //                 'color' => ['argb' => '000000'],
-            //             ],
-            //         ],
-            //     ]);
-            // },
             AfterSheet::class => function (AfterSheet $event) {
                 $event->sheet->getDelegate()->getStyle('A2:A200')
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
-                $event->sheet->getDelegate()->getStyle('A1:E1')
+                $event->sheet->getDelegate()->getStyle('A1:G1')
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->getDelegate()->getStyle('A1:E200')->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
-                $event->sheet->getDelegate()->getRowDimension('1')->setRowHeight(40);
+                $event->sheet->getDelegate()->getStyle('A1:G200')->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
+                $event->sheet->getDelegate()->getRowDimension('1')->setRowHeight(50);
             },
         ];
     }
@@ -46,30 +36,33 @@ class ProposalTAExport implements FromCollection, WithHeadings, WithMapping, Wit
     public function styles(Worksheet $sheet)
     {
         return [
-            // 1    => ['font' => ['bold' => true]],
             1  => ['font' => ['size' => 12, 'bold' => true]],
             'B' => ['alignment' => ['wrapText' => true]],
             'C' => ['alignment' => ['wrapText' => true]],
             'D' => ['alignment' => ['wrapText' => true]],
             'E' => ['alignment' => ['wrapText' => true]],
+            'F' => ['alignment' => ['wrapText' => true]],
+            'G' => ['alignment' => ['wrapText' => true]],
         ];
     }
 
     public function columnWidths(): array
     {
         return [
-            'A' => 15,
+            'A' => 10.5,
             'B' => 16,
             'C' => 16,
             'D' => 16,
             'E' => 16,
+            'F' => 16,
+            'G' => 16,
         ];
     }
 
     public function headings(): array
     {
         return [
-            'NIM', 'Nama', 'Judul Satu', 'Judul Dua', 'Judul Tiga'
+            'NIM', 'Nama', 'Judul Satu', 'Judul Dua', 'Judul Tiga', 'Dosen Pembimbing Utama', 'Dosen Pembimbing Dua'
         ];
     }
 
@@ -81,6 +74,8 @@ class ProposalTAExport implements FromCollection, WithHeadings, WithMapping, Wit
             ucwords($row->judul_satu),
             ucwords($row->judul_dua),
             ucwords($row->judul_tiga),
+            ucwords($row->dosen_satu->nama),
+            ucwords($row->dosen_dua->nama),
         ];
     }
 
@@ -89,6 +84,6 @@ class ProposalTAExport implements FromCollection, WithHeadings, WithMapping, Wit
      */
     public function collection()
     {
-        return ProposalTA::where('status', 'dikirim')->with('mahasiswa')->get();
+        return ProposalTA::where('status', 'diterima')->with('mahasiswa')->get();
     }
 }
