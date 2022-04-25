@@ -15,8 +15,11 @@
           <thead>
             <tr>
               <th>ID</th>
-              <th>Name</th>
-              <th>Action</th>
+              <th>Nama</th>
+              <th>Proposal</th>
+              <th>Seminar</th>
+              <th>Pendadaran</th>
+              <th>Aksi</th>
             </tr>
           </thead>
           <tbody class="table-border-bottom-0">
@@ -24,6 +27,14 @@
             <tr>
               <td>{{ $dosen->id }}</td>
               <td>{{ ucwords($dosen->nama) }}</td>
+              @php
+              $proposalProgres = App\Models\ProposalTA::where([['dosen_id_satu', '=', $dosen->id],['status', '=', 'diterima'],])->orWhere([['dosen_id_dua', '=', $dosen->id],['status', '=', 'diterima'],])->get();
+              $semhasProgres = App\Models\SeminarHasil::where('status', 'diterima')->whereHas('proposal', function ($query) {$query->where('dosen_id_satu', auth()->user()->id)->orWhere('dosen_id_dua', auth()->user()->id);})->get();
+              $pendadaranProgres = App\Models\Pendadaran::where('status', 'diterima')->whereHas('proposal', function ($query) {$query->where('dosen_id_satu', auth()->user()->id)->orWhere('dosen_id_dua', auth()->user()->id);})->get();
+              @endphp
+              <td>{{ count($proposalProgres) }} Mhs</td>
+              <td>{{ count($semhasProgres) }} Mhs</td>
+              <td>{{ count($pendadaranProgres) }} Mhs</td>
               <td>
                 <a href="{{ route('data-dosen.edit', [$dosen->id]) }}" class="btn btn-dark border-0 d-block d-sm-inline-block my-1 py-1 px-2 btn-edit">
                   <i class="bx bx-pencil"></i>
