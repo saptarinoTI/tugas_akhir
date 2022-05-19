@@ -31,7 +31,8 @@ class SeminarController extends Controller
         if ($proposal) {
             $statusProposalSelesai = $proposal->status == 'selesai';
             $statusProposalDiterima = $proposal->status == 'diterima';
-            if ($statusProposalSelesai || $statusProposalDiterima) {
+            $statusProposalPerbaikan = $proposal->status == 'perbaikan';
+            if ($statusProposalSelesai || $statusProposalDiterima || $statusProposalPerbaikan) {
                 $noSeminar = date('Y') . $nim;
                 $seminar = SeminarHasil::where('proposalta_id', '=', $proposal->id)->first();
                 return view('mahasiswa.data.seminarhasil.index', compact('proposal', 'seminar', 'noSeminar'));

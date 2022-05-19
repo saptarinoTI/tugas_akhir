@@ -59,6 +59,7 @@
             <select class="form-select @error('status') is-invalid @enderror" placeholder="Pilih Salah Satu ..." id="status" name="status" />
             <option value="">Pilih salah satu ....</option>
             <option value="diterima" name="diterima">Diterima</option>
+            <option value="perbaikan" name="perbaikan">Perbaikan</option>
             <option value="ditolak" name="ditolak">Ditolak</option>
             </select>
             @error('status')
@@ -203,7 +204,7 @@
     $('#judul_ta').hide();
     $('#dosen').hide();
     $('#status').change(function() {
-      if ($(this).val() == 'diterima') {
+      if ($(this).val() == 'diterima' || $(this).val() == 'perbaikan') {
         $('#tgl_acc').show();
         $('#judul_ta').show();
         $('#dosen').show();

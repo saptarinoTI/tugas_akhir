@@ -108,12 +108,14 @@
         <span class="badge bg-dark">Diterima
           @elseif ($proposal->status == 'ditolak')
           <span class="badge bg-danger">Ditolak
-            @elseif ($proposal->status == 'selesai')
-            <span class="badge bg-success">Selesai
-              @else
-              <span class="badge bg-info">Dikirim
-                @endif
-              </span>
+            @elseif ($proposal->status == 'perbaikan')
+            <span class="badge bg-warning">Perbaikan
+              @elseif ($proposal->status == 'selesai')
+              <span class="badge bg-success">Selesai
+                @else
+                <span class="badge bg-info">Dikirim
+                  @endif
+                </span>
       </td>
     </tr>
 

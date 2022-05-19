@@ -51,12 +51,12 @@ class DataProposalController extends Controller
         $request->validate([
             'nim' => 'required',
             'nama' => 'required',
-            'status' => 'in:diterima,ditolak',
-            'tgl_acc' => 'required_if:status,diterima',
-            'judul_ta' => 'required_if:status,diterima',
-            'dosen_id_satu' => 'required_if:status,diterima',
-            'dosen_id_dua' => 'required_if:status,diterima',
-            'keterangan' => 'required_if:status,ditolak',
+            'status' => 'in:diterima,ditolak,perbaikan',
+            'tgl_acc' => 'required_if:status,diterima,perbaikan',
+            'judul_ta' => 'required_if:status,diterima,perbaikan',
+            'dosen_id_satu' => 'required_if:status,diterima,perbaikan',
+            'dosen_id_dua' => 'required_if:status,diterima,perbaikan',
+            'keterangan' => 'required_if:status,ditolak,perbaikan',
         ]);
         $proposal = ProposalTA::findOrFail($id);
         if ($request->status === "ditolak") {
@@ -71,7 +71,7 @@ class DataProposalController extends Controller
             $proposal->judul_tiga = null;
             $proposal->status = $request->status;
             $proposal->keterangan = ucwords(htmlspecialchars($request->keterangan));
-        } else if ($request->status == "diterima") {
+        } else if ($request->status == "diterima" || $request->status == "perbaikan") {
             $proposal->status = $request->status;
             $proposal->tgl_acc = $request->tgl_acc;
             $proposal->judul_ta = $request->judul_ta;
@@ -104,6 +104,8 @@ class DataProposalController extends Controller
                     return '<div class="badge bg-dark"><span class="small">Diterima</span></div>';
                 } elseif ($row->status == 'ditolak') {
                     return '<div class="badge bg-danger"><span class="small">Ditolak</span></div>';
+                } elseif ($row->status == 'perbaikan') {
+                    return '<div class="badge bg-warning"><span class="small">Perbaikan</span></div>';
                 } elseif ($row->status == 'selesai') {
                     return '<div class="badge bg-success"><span class="small">Selesai</span></div>';
                 } else {
@@ -116,7 +118,7 @@ class DataProposalController extends Controller
             ->addColumn('btn', function ($row) {
                 if ($row->status == 'ditolak') {
                     return '<a href="#modal" data-remote="' . route('detail-proposal', $row->id) . '" data-bs-toggle="modal" data-bs-target="#modal" data-title="Detail Proposal Tugas Akhir" class="my-1 btn btn-sm py-2 border-0 rounded-2 btn-info"><i class="bx bx-info-circle"></i></a>';
-                } elseif ($row->status == 'diterima' || $row->status == 'selesai') {
+                } elseif ($row->status == 'diterima' || $row->status == 'selesai' || $row->status == 'perbaikan') {
                     return '<a href="#modal" data-remote="' . route('detail-proposal', $row->id) . '" data-bs-toggle="modal" data-bs-target="#modal" data-title="Detail Proposal Tugas Akhir" class="my-1 btn btn-sm py-2 border-0 rounded-2 btn-info"><i class="bx bx-info-circle"></i></a>';
                 } else {
                     return '<a href="' . route('data-proposal.edit', $row->id) . '" class="my-1 btn btn-sm py-2 border-0 rounded-2 btn-dark"><i class="bx bx-pencil"></i></a>
