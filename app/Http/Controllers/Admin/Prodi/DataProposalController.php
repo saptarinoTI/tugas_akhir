@@ -52,7 +52,6 @@ class DataProposalController extends Controller
             'nim' => 'required',
             'nama' => 'required',
             'status' => 'in:diterima,ditolak,perbaikan',
-            'tgl_acc' => 'required_if:status,diterima,perbaikan',
             'judul_ta' => 'required_if:status,diterima,perbaikan',
             'dosen_id_satu' => 'required_if:status,diterima,perbaikan',
             'dosen_id_dua' => 'required_if:status,diterima,perbaikan',
@@ -73,7 +72,7 @@ class DataProposalController extends Controller
             $proposal->keterangan = ucwords(htmlspecialchars($request->keterangan));
         } else if ($request->status == "diterima" || $request->status == "perbaikan") {
             $proposal->status = $request->status;
-            $proposal->tgl_acc = $request->tgl_acc;
+            $proposal->tgl_acc = htmlspecialchars(date('Y-m-d'));
             $proposal->judul_ta = $request->judul_ta;
             $proposal->dosen_id_satu = $request->dosen_id_satu;
             $proposal->dosen_id_dua = $request->dosen_id_dua;

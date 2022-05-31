@@ -68,16 +68,6 @@
             </div>
             @enderror
           </div>
-          {{-- Tanggal ACC --}}
-          <div class="mb-3" id="tgl_acc">
-            <label class="form-label">Tanggal ACC</label>
-            <input type="date" class="form-control @error('tgl_acc') is-invalid @enderror" value="{{ old('tgl_acc') }}" name="tgl_acc" autocomplete="off" />
-            @error('tgl_acc')
-            <div class="invalid-feedback">
-              {{ $message }}
-            </div>
-            @enderror
-          </div>
           {{-- Judul Tugas Akhir ACC --}}
           <div class="mb-3" id="judul_ta">
             <label class="form-label">Judul Tugas Akhir ACC</label>
