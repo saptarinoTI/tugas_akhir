@@ -110,7 +110,10 @@
     <p><i class='bx bxs-chevrons-right'></i> Kartu Rencana Studi</p>
     <p><i class='bx bxs-chevrons-right'></i> Transkip Nilai</p>
     <p><i class='bx bxs-chevrons-right'></i> Bukti Penyerahan Laporan Kerja Praktek</p>
-    <p><i class='bx bxs-chevrons-right'></i> Foto Copy Kartu Kuning / Surat Keterangan Keuangan Dari BAUK (Dengan Keterangan Pembayaran Tugas Akhir Minimal 50%)</p>
+    <p><i class='bx bxs-chevrons-right'></i> FotoCopy Kartu Kuning / Surat Keterangan Keuangan Dari BAUK (Dengan Keterangan Pembayaran Tugas Akhir Minimal 50%)</p>
+    <p><i class='bx bxs-chevrons-right'></i> FotoCopy Ijazah</p>
+    <p><i class='bx bxs-chevrons-right'></i> FotoCopy Akte Kelahiran</p>
+    <p><i class='bx bxs-chevrons-right'></i> FotoCopy KTP</p>
     <p><i class='bx bxs-chevrons-right'></i> Menunjukan Lembar Aktifitas Tugas Akhir / Lembar Konsultasi</p>
     <hr class="mb-3" />
     <h5 class="fw-bold">Informasi Pendadaran</h5>
